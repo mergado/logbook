@@ -19,5 +19,6 @@ return [
 	'new' => 'Nový log',
 	'no_logs' => 'Zatím k tomuto exportu nemáte žádné logy.',
 	'back' => 'Zpět',
-	'no' => 'Zatím tu nemáte žádné logy.'
+	'no' => 'Zatím tu nemáte žádné logy.',
+	'write_first' => 'Zapište první!'
 ];

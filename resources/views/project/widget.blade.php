@@ -27,7 +27,12 @@
                         @else
                             <tr>
                                 <td class="centered" style="zoom: 1.2">
-                                    <b>{!! trans('log.no_logs') !!}</b>
+                                    <b>{!! trans('log.no') !!}</b>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="centered" style="zoom: 1.2; padding-top: 10px;">
+                                    <b>{!! trans('log.write_first') !!}</b>
                                 </td>
                             </tr>
                         @endif
