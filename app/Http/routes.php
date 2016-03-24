@@ -16,13 +16,6 @@ Route::group(['middleware' => ['web']], function () {
 	Route::get('error', ['uses' => 'ErrorController@index', 'as' => 'error']);
 	Route::get('404page', ['uses' => 'ErrorController@notFound', 'as' => '404']);
 	Route::get('eshop/{eshop_id}/auth', ['uses' => 'OAuthController@auth', 'as' => 'auth']);
-	Route::get('test', function() {
-		\App\Models\User::all()->destroy();
-
-		dump($_SERVER['SERVER_NAME']);
-		dump($_SERVER['SERVER_ADDR']);
-		return view('project.logs.show');
-	});
 });
 
 /*
