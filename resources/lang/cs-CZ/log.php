@@ -18,5 +18,6 @@ return [
 	'confirm_delete' => 'Opravdu chcete smazat log?',
 	'new' => 'Nový log',
 	'no_logs' => 'Zatím k tomuto exportu nemáte žádné logy.',
-	'back' => 'Zpět'
+	'back' => 'Zpět',
+	'no' => 'Zatím tu nemáte žádné logy.'
 ];
