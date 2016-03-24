@@ -1,0 +1,210 @@
+/* Datagrids */
+
+.datagrid-header
+	@include clearfix()
+
+	.left
+		float: left
+
+	.right
+		float: right
+
+table.datagrid
+	width: 100%
+
+	&.fixed
+		table-layout: fixed
+
+	thead, tbody, th, td
+		@include border-box-sizing()
+
+	thead, tfoot
+		th
+			background: $text-color
+			font-weight: bold
+			padding: 0 $datagrid-padding-horizontal
+			height: $datagrid-padding-horizontal * 3
+			line-height: normal
+			box-sizing: border-box
+			color: $content-bg-color
+			vertical-align: middle
+			text-align: left
+			white-space: nowrap
+
+			&:first-line
+				line-height: $datagrid-padding-horizontal * 3
+
+			&.number
+				text-align: center
+
+			&.status
+				text-align: center
+
+			&.right
+				text-align: right
+
+	tbody
+		background: $content-bg-color
+
+		tr:not(.no-hover):hover
+			background: $datagrid-hover-background
+
+			td
+				background: $datagrid-hover-background
+
+	tfoot
+		td
+			background: $datagrid-foot-background
+
+	td, tbody th
+		padding: $datagrid-padding-vertical $datagrid-padding-horizontal
+		text-align: left
+		vertical-align: middle
+		line-height: $datagrid-padding-vertical * 2
+		border-bottom: 1px solid $datagrid-border-color
+		font-weight: normal
+
+		tr:last-child td, tr:last-child th
+			border-bottom: none
+
+		&.no-padding
+			padding: 0
+
+	&.dotted
+		td
+			border-right: $content-line-color 1px dotted
+
+			&:last-child
+				border-right: none
+
+	tr
+		&:nth-child(even)
+			// background: $datagrid-even-background
+
+		&:nth-child(odd)
+			// background: $datagrid-odd-background
+
+		&.highlight
+			background: $datagrid-highlight-background
+
+		&.highlight-2
+			background: $datagrid-highlight-2-background
+
+		&.turned-off
+			color: $datagrid-turned-off-color
+
+		&.dragable
+			.icon-vertical-sort
+				cursor: move
+
+			&.ui-sortable-helper // currently dragged row
+				.hide-on-drag
+					display: none
+
+	td
+		&.number
+			text-align: center
+
+		&.status
+			text-align: center
+
+		&.right
+			text-align: right
+
+	td, th
+		&.nowrap
+			white-space: nowrap
+
+		&.ellipsis
+			text-overflow: ellipsis
+			overflow: hidden
+			white-space: nowrap
+
+		&.w2
+			width: 2%
+
+		&.w5
+			width: 5%
+
+		&.w10
+			width: 10%
+
+		&.w14
+			width: 14%
+
+		&.w15
+			width: 15%
+
+		&.w16
+			width: 16%
+
+		&.w20
+			width: 20%
+
+		&.w25
+			width: 25%
+
+		&.w30
+			width: 30%
+
+		&.w35
+			width: 35%
+
+		&.w40
+			width: 40%
+
+		&.w45
+			width: 45%
+
+		&.w50
+			width: 50%
+
+		&.w55
+			width: 55%
+
+		&.w60
+			width: 60%
+
+		&.w65
+			width: 65%
+
+		&.w70
+			width: 70%
+
+		&.w75
+			width: 75%
+
+		&.w80
+			width: 80%
+
+		&.w85
+			width: 85%
+
+		&.w90
+			width: 90%
+
+		&.w95
+			width: 95%
+
+		&.left
+			text-align: left
+
+		&.center
+			text-align: center
+
+		&.right
+			text-align: right
+
+		&.top
+			vertical-align: top
+
+		&.middle
+			vertical-align: middle
+
+		&.bottom
+			vertical-align: bottom
+
+	td, tbody th
+		.icon
+			&:first-child
+				margin-left: 0

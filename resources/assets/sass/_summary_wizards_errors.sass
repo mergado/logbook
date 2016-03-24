@@ -1,0 +1,292 @@
+$progress-button-width: 200px
+
+.summary, .wizard, .error-list
+	background: $summary-bg-color
+	padding: $summary-padding
+	border: 1px solid $summary-line-color
+	margin: 10px 0 20px 0
+	@include border-box-sizing()
+
+	&.half-padding
+		padding: $summary-padding / 2
+
+	&.warning
+		color: $text-color !important
+		position: relative
+
+		&:after
+			content: ''
+			display: block
+			width: 100%
+			height: 5px
+			position: absolute
+			background: $warning-color
+			bottom: 0
+			left: 0
+
+	header.main
+
+		h1, h2, h3
+			background: $summary-bg-color
+
+		h1, h2, h3
+			small
+				color: $light-color
+
+		&:first-child
+			margin-top: 0
+
+		&:last-child
+			margin-bottom: 0
+
+	h3
+		margin: 10px 5px
+
+	.notification
+		margin-bottom: 20px
+
+	.controls
+		text-align: center
+		margin: 10px auto
+		@include clearfix()
+		width: 500px
+
+	.controls
+		text-align: center
+		margin: 20px auto
+		width: 500px
+
+		&:last-of-type
+			margin-bottom: 0
+
+		.button
+			width: $progress-button-width
+			margin-right: 10px
+			margin-top: 0 !important
+
+			&:last-child
+				margin-right: 0
+
+			&.small
+				@include small-button($fixed-width: $progress-button-width)
+
+.error-list
+	line-height: 1.5
+
+.summary
+	table
+		width: 100%
+		margin: 0
+
+		&:first-child
+			margin-top: 0
+
+		&:last-child
+			margin-bottom: 0
+
+		th
+			width: $form-header-width
+			height: 40px
+			line-height: 40px
+
+			&.half
+				width: $form-header-width / 2
+
+			&.third
+				width: $form-header-width / 3
+
+		td
+
+			&.actions
+				padding-top: 10px
+
+			&.hint-area
+				width: 20px !important
+
+			.text
+				height: $form-control-height - 6px
+				line-height: $form-control-height - 6px
+				margin-top: 3px
+				margin-bottom: 3px
+
+	&.partial
+		margin: 0
+		border-top: none
+		border-bottom: none
+
+		&.edge
+			height: 5px
+		&.no-padding
+			padding: 0
+		&.top
+			border-top: 1px solid $summary-line-color
+			margin-top: 10px
+		&.bottom
+			border-bottom: 1px solid $summary-line-color
+			margin-bottom: 20px
+
+.wizard
+	padding: $summary-padding
+
+	p
+		text-align: left
+		line-height: 150%
+
+	ol, ul
+		li
+			clear: both
+			line-height: $form-control-height
+			text-align: left
+
+			.text
+				float: none
+
+	form
+		td
+			text-align: left
+			vertical-align: top
+
+	.advanced
+		margin-top: 20px
+
+	.search-engine-select
+
+		margin-bottom: 10px
+
+		th
+			padding: 0
+
+		header
+			display: table
+			table-layout: fixed
+			width: 100%
+			cursor: pointer
+			line-height: 20px
+			background: rgba($bg-color, 0.5)
+			@include no-select
+			border-top: 1px $content-line-color solid
+			border-bottom: 1px $content-line-color dotted
+			background: rgba($bg-color, 0.5)
+
+			img
+				box-shadow: 0px 0px 10px -2px rgba(#000, 0.5)
+
+			h2
+				padding: 10px
+				display: table-cell
+				width: 98%
+				background: $bg-color
+
+			.toggle
+				display: table-cell
+				width: 40px
+				vertical-align: middle
+				text-align: center
+
+			&:hover
+				.up-arrow
+					border-bottom-color: $link-color
+
+				.down-arrow
+					border-top-color: $link-color
+
+		.format-wrapper
+			padding: 0 12px
+
+		tr:last-child
+			td
+				border-bottom: 1px dotted $content-line-color
+
+		.possible
+			color: $positive-color
+			font-weight: bold
+
+	.email-sample
+		textarea
+			height: 200px
+
+	.results, .results-spinner
+		width: 70%
+		margin: 15px auto 30px auto
+
+		th, td
+			padding: 8px 0
+			font-size: 14pt
+			text-align: left
+			vertical-align: middle
+
+		th
+			width: 50%
+			font-weight: normal
+			padding-right: 10px
+
+		td
+			width: 50%
+			font-weight: bold
+
+		.progress-bar
+			width: 100px
+			margin-right: 10px
+			display: inline-block
+			vertical-align: middle
+
+			& + span
+				vertical-align: middle
+
+				& + small
+					padding-left: 10px
+					margin-left: 5px
+					border-left: 1px dotted $content-line-color
+					vertical-align: middle
+
+	.results-spinner
+		td
+			width: 25%
+
+	.summary
+		margin: 10px 0
+
+.new-project-wizard-progress
+	padding: 0
+	margin: 20px 0
+	list-style: none
+	@include clearfix()
+	background: url('../img/button-dark-background.png') 0 50% repeat-x
+
+	li
+		display: block
+		position: relative
+		float: left
+		height: 36px
+		line-height: 36px
+		background-repeat: repeat-x
+		background-position: 0 50%
+		color: #fff
+		padding: 0 10px 0 23px
+
+		&.done, &.current
+			background: url('../img/button-blue-background.png') 0 50% repeat-x // IE8
+			background: url('../img/button-blue.png') no-repeat -13px 50%, url('../img/button-blue-background.png') 0 50% repeat-x
+
+			&:first-child
+				background: url('../img/button-blue-background.png') 0 50% repeat-x
+
+		&.current
+			font-weight: bold
+			z-index: 5
+
+			&:after
+				content: ''
+				display: block
+				width: 13px
+				height: 36px
+				background: red
+				position: absolute
+				top: 0
+				right: -13px
+				background: url('../img/button-blue.png') -12px 0 no-repeat
+
+		&.pending
+			z-index: 0
+			background: url('../img/button-dark-background.png') 0 50% repeat-x // IE8
+			background: url('../img/button-dark.png') no-repeat -13px 50%, url('../img/button-dark-background.png') 0 50% repeat-x

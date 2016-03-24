@@ -1,0 +1,250 @@
+form
+
+	label
+		padding-top: $form-control-height / 4
+		padding-bottom: $form-control-height / 4
+
+
+		width: 100%
+
+		padding-bottom: $form-cell-vert-padding
+
+		text-align: left
+		vertical-align: top
+		padding-right: 20px
+		@include border-box-sizing()
+
+
+		input[type=checkbox] ~ .popup-hint-trigger:after
+			right: 5px
+			left: inherit
+
+		.sublist
+			padding-left: 30px
+
+		p.info
+			margin: 0.5em 0 0 8px
+
+		&.preview
+			h3, .placeholder
+				text-align: center
+
+			.ad-preview
+				margin-top: 20px
+
+			&.reloading
+				.ad-preview, .keywords-list
+					@include opacity(0.5)
+
+	input[type=submit], button
+		&:focus
+			@include input-focus-outline
+
+form.full-width
+
+	margin: 0px auto
+	width: $form-header-width
+
+	.text, textarea
+
+		&.inline-number
+			width: 100px
+
+		&.submit-area
+			text-align: center
+
+		p.info
+			margin: 0.5em 0 0 8px
+
+form
+	button
+
+		&.only-child
+			margin-top: 0px !important
+
+		&:first-of-type
+			margin-top: 30px
+
+form.single-button-form
+	.submit-area
+		text-align: center
+
+.side-column
+	padding: 0
+
+	.submit-area
+		padding: $form-control-hor-padding 0
+
+input.text, input[type="text"], input[type="email"], input[type="search"], textarea
+	@include border-box-sizing()
+	background-color: #fff
+	border: 1px solid $form-border-color
+	display: block
+	float: left
+	width: 100%
+	text-align: left
+	outline: none
+	padding: 0 $form-control-hor-padding
+
+	&.inline-number
+		display: inline-block
+		float: none
+		width: 100px
+		margin: 0 0.5em
+
+	&:hover
+		border-color: $form-border-color-hover
+
+	&:focus
+		border-color: $form-border-color-focus
+		@include input-focus-outline
+
+	&[readonly]
+		background-color: #f5f5f5
+
+		&:focus
+			border-color: $form-border-color-hover
+			@include input-focus-outline($form-border-color-hover)
+
+	&[disabled]
+		background-color: #f5f5f5
+		color: $form-border-color-hover
+
+		&:focus
+			border-color: $form-border-color-hover
+			@include input-focus-outline($form-border-color-hover)
+
+textarea
+	height: 100px
+	padding: $form-control-hor-padding
+	font-size: inherit
+
+	&.high
+		height: 240px
+
+	&[wrap="off"]
+		white-space: pre
+		word-wrap: normal
+
+input.text, input[type="text"], input[type="email"], input[type="search"]
+	color: $text-color
+	height: $form-control-height
+	line-height: $form-control-height
+
+input[type="checkbox"], input[type="radio"]
+	display: inline-block
+	@include border-box-sizing()
+	width: $form-small-controls-size
+	height: $form-small-controls-size
+	margin: 10px
+	margin-left: 0px
+	vertical-align: middle
+
+	&:only-child
+		margin-left: 0px
+		margin-right: 0px
+
+	&:focus
+		@include input-focus-outline
+
+label
+	@include border-box-sizing()
+	display: inline-block
+
+	font-weight: normal
+		padding: 0 $form-control-hor-padding
+
+.textoverlay-wrapper
+	&.input
+		.textoverlay
+			line-height: $form-control-height
+
+	span
+
+		&.variable-ok
+			background: #fbeea5
+
+		&.variable-bad
+			background: #FF9E6C
+
+.textcomplete-field-wrapper
+	position: relative
+
+	.popup-hint-trigger
+		position: absolute
+		top: 0
+		right: 0
+
+	&.input
+		.textcomplete-ghost
+			line-height: 40px
+
+.textcomplete-wrapper
+	.dropdown-menu
+		margin: 0
+		padding: 0
+		list-style: none
+		position: absolute
+		overflow: auto
+		cursor: pointer
+		outline: none
+		@include pretty-shadow
+		background: #fff
+		border: 1px solid $content-line-color
+
+		.textcomplete-item
+			padding: 5px
+			@include no-select
+			white-space: nowrap
+			overflow: hidden
+			list-style: none
+
+			&.active, &:hover
+				background-color: $link-color !important
+
+				a
+					color: #fff
+					text-decoration: none
+
+			&:nth-child(even)
+				background-color: rgba($content-line-color, 0.25)
+
+label.required
+	&:after
+		color: $important-color
+		content: '*'
+		font-weight: bold
+		font-size: 10pt
+		padding-left: 5px
+		line-height: 0
+
+.variables-suffix
+	color: blue
+	font-weight: bold
+
+p[class^="suffix-info"]
+	margin-bottom: 30px
+
+	& + p[class^="suffix-info"]
+		margin-top: -30px
+
+	&:last-child
+		margin-bottom: 0
+
+.side-column
+	.variables-suffix-info
+		text-align: center
+
+	.required-suffix-info
+		text-align: center
+
+.delete-row-trigger
+	display: block
+	float: left
+	position: relative
+	left: 8px
+	@include border-box-sizing
+	height: $hint-trigger-height
+	line-height: $hint-trigger-height
+	width: 0
+	margin: 0 !important

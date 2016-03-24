@@ -1,0 +1,515 @@
+$sprite-cell-size: 40px
+
+// don't override top & bottom margin
+.icon
+	margin-right: $icon-spacing
+
+	&:first-child
+		margin-left: 0
+
+	&:only-child
+		margin-right: 0
+
+	&:last-child
+		margin-right: 0
+
+@mixin icon-sprite($pos-x, $pos-y, $icon-width, $icon-height)
+	background-position: (-($sprite-cell-size * $pos-x)) (-($sprite-cell-size * $pos-y))
+	width: $icon-width
+	height: $icon-height
+
+@mixin icon($pos-x, $pos-y, $icon-width: 20px, $icon-height: 20px)
+	@include icon-sprite($pos-x, $pos-y, $icon-width, $icon-height)
+	display: inline-block
+	text-indent: 105%
+	white-space: nowrap
+	padding: 0 !important
+	overflow: hidden
+	vertical-align: middle
+	font-size: 0
+
+.icon
+	background-repeat: no-repeat // background image is set via javascript
+
+	&.header-icon
+		display: block !important
+		margin: auto
+
+	&.icon-failed
+		@include icon(0, 0)
+
+	&.icon-warning
+		@include icon(1, 0)
+
+	&.icon-ok
+		@include icon(0, 1)
+
+	&.icon-edit
+		@include icon(0, 2)
+
+		&:hover, &:focus
+			@include icon(1, 2)
+
+		&.disabled, &.disabled:hover, &.disabled:focus
+			@include icon(2, 2)
+
+	&.icon-delete
+		@include icon(0, 3)
+
+		&:hover, &:focus
+			@include icon(1, 3)
+
+		&.disabled, &.disabled:hover, &.disabled:focus
+			@include icon(2, 3)
+
+	&.icon-hide
+		@include icon(0, 4)
+
+		&:hover, &:focus
+			@include icon(1, 4)
+
+		&.disabled, &.disabled:hover, &.disabled:focus
+			@include icon(2, 4)
+
+	&.icon-show
+		@include icon(0, 5)
+
+		&:hover, &:focus
+			@include icon(1, 5)
+
+		&.disabled, &.disabled:hover, &.disabled:focus
+			@include icon(2, 5)
+
+	&.icon-turn-on, &.icon-run
+		@include icon(0, 7)
+
+		&:hover, &:focus
+			@include icon(1, 7)
+
+		&.disabled, &.disabled:hover, &.disabled:focus
+			@include icon(2, 7)
+
+	&.icon-turn-off
+		@include icon(0, 6)
+
+		&:hover, &:focus
+			@include icon(1, 6)
+
+		&.disabled, &.disabled:hover, &.disabled:focus
+			@include icon(2, 6)
+
+	&.icon-pause
+		@include icon(0, 8)
+
+		&:hover, &:focus
+			@include icon(1, 8)
+
+		&.disabled, &.disabled:hover, &.disabled:focus
+			@include icon(2, 8)
+
+	&.icon-restart
+		@include icon(0, 23)
+
+		&:hover, &:focus
+			@include icon(1	, 23)
+
+		&.disabled, &.disabled:hover, &.disabled:focus
+			@include icon(2, 23)
+
+	&.icon-move-up
+		@include icon(0, 9)
+
+		&:hover, &:focus
+			@include icon(1, 9)
+
+		&.disabled, &.disabled:hover, &.disabled:focus
+			@include icon(2, 9)
+
+	&.icon-move-down
+		@include icon(0, 10)
+
+		&:hover, &:focus
+			@include icon(1, 10)
+
+		&.disabled, &.disabled:hover, &.disabled:focus
+			@include icon(2, 10)
+
+	&.icon-sort-asc
+		@include icon(0, 11, 20px, 20px)
+		margin-left: 0
+		margin-right: 0
+
+		&:hover, &:focus
+			@include icon(1, 11, 20px, 20px)
+			margin-left: 0
+			margin-right: 0
+
+	&.icon-sort-desc
+		@include icon(0, 12, 20px, 20px)
+		margin-left: 1em
+		margin-right: 0
+
+		&:hover, &:focus
+			@include icon(1, 12, 20px, 20px)
+			margin-left: 1em
+			margin-right: 0
+
+	&.icon-eshop-permissions
+		@include icon(0, 13)
+
+		&:hover, &:focus
+			@include icon(1, 13)
+
+		&.disabled, &.disabled:hover, &.disabled:focus
+			@include icon(2, 13)
+
+	&.icon-user-details
+		@include icon(0, 14)
+
+		&:hover, &:focus
+			@include icon(1, 14)
+
+		&.disabled, &.disabled:hover, &.disabled:focus
+			@include icon(2, 14)
+
+	&.icon-log, &.icon-variable-values, &.icon-invoice-details
+		@include icon(0, 15)
+
+		&:hover, &:focus
+			@include icon(1, 15)
+
+		&.disabled, &.disabled:hover, &.disabled:focus
+			@include icon(2, 15)
+
+	&.icon-go-to
+		@include icon(0, 16)
+
+		&:hover, &:focus
+			@include icon(1, 16)
+
+		&.disabled, &.disabled:hover, &.disabled:focus
+			@include icon(2, 16)
+
+	&.icon-message
+		@include icon(0, 17)
+
+		&:hover, &:focus
+			@include icon(1, 17)
+
+	&.icon-root-user
+		@include icon(0, 18)
+
+		&:hover, &:focus
+			@include icon(1, 18)
+
+	&.icon-set-root-user
+		@include icon(2, 19)
+
+		&:hover, &:focus
+			@include icon(3, 19)
+
+	&.icon-remove-root-user
+		@include icon(0, 19)
+
+		&:hover, &:focus
+			@include icon(1, 19)
+
+	&.icon-export-status-0
+		@include icon(0, 20)
+
+	&.icon-export-status-1
+		@include icon(1, 20)
+
+	&.icon-export-status-2
+		@include icon(2, 20)
+
+	&.icon-export-status-3
+		@include icon(3, 20)
+
+	&.icon-reload
+		@include icon(0, 23)
+
+		&:hover, &:focus
+			@include icon(1	, 23)
+
+	&.icon-paying-customer
+		@include icon(0, 24)
+
+	&.icon-tollfree
+		@include icon(0, 25)
+
+	&.icon-hidden-product
+		@include icon(0, 26, 32px, 30px)
+
+	&.icon-audit-results
+		@include icon(0, 15)
+
+		&:hover, &:focus
+			@include icon(1, 15)
+
+		&.disabled, &.disabled:hover, &.disabled:focus
+			@include icon(2, 15)
+
+	&.icon-audit-status
+		@include icon(0, 2)
+
+		&:hover, &:focus
+			@include icon(1, 2)
+
+		&.disabled, &.disabled:hover, &.disabled:focus
+			@include icon(2, 2)
+
+	&.icon-audit-source
+		@include icon(0, 1) // empty
+
+		&.mergado
+			@include icon(0, 0)
+
+		&.public
+			@include icon(2, 0)
+
+		&.heureka
+			@include icon(1, 0)
+
+	&.icon-created
+		@include icon(0, 27)
+
+	&.icon-updated
+		@include icon(1, 27)
+
+	&.icon-removed
+		@include icon(2, 27)
+
+	&.icon-from-input
+		@include icon(0, 16)
+
+	&.icon-manual
+		@include icon(0, 2)
+
+	&.icon-will-change-to
+		@include icon(0, 16)
+
+	&.icon-statistics
+		@include icon(0, 28)
+
+		&:hover, &:focus
+			@include icon(1, 28)
+
+		&.disabled, &.disabled:hover, &.disabled:focus
+			@include icon(2, 28)
+
+	&.icon-vertical-sort
+		@include icon(0, 29)
+
+		&:hover, &:focus
+			@include icon(1, 29)
+
+		&.disabled, &.disabled:hover, &.disabled:focus
+			@include icon(2, 29)
+
+	&.icon-close, &.icon-cancel
+		@include icon(0, 31)
+
+		&:hover, &:focus
+			@include icon(1, 31)
+
+		&.disabled, &.disabled:hover, &.disabled:focus
+			@include icon(2, 31)
+
+	&.icon-export-status-off
+		@include icon(0, 30)
+
+	&.icon-cron-late
+		@include icon(0, 32)
+
+	&.icon-by-rule
+		@include icon(0, 33)
+
+	&.icon-rule
+		@include icon(0, 33)
+
+		&:hover, &:focus
+			@include icon(1, 33)
+
+		&.disabled, &.disabled:hover, &.disabled:focus
+			@include icon(2, 33)
+
+	&.icon-csv
+		@include icon(0, 34)
+
+		&:hover, &:focus
+			@include icon(1, 34)
+
+		&.disabled, &.disabled:hover, &.disabled:focus
+			@include icon(2, 34)
+
+	&.icon-pdf
+		@include icon(0, 34)
+
+		&:hover, &:focus
+			@include icon(1, 34)
+
+		&.disabled, &.disabled:hover, &.disabled:focus
+			@include icon(2, 34)
+
+	&.icon-shop
+		@include icon(0, 35)
+
+		&:hover, &:focus
+			@include icon(1, 35)
+
+		&.disabled, &.disabled:hover, &.disabled:focus
+			@include icon(2, 35)
+
+	&.icon-xml
+		@include icon(0, 36)
+
+		&:hover, &:focus
+			@include icon(1, 36)
+
+		&.disabled, &.disabled:hover, &.disabled:focus
+			@include icon(2, 36)
+
+	&.icon-open
+		@include icon(0, 37)
+
+		&:hover, &:focus
+			@include icon(1, 37)
+
+		&.disabled, &.disabled:hover, &.disabled:focus
+			@include icon(2, 37)
+
+	&.icon-store
+		@include icon(0, 38)
+
+		&:hover, &:focus
+			@include icon(1, 38)
+
+		&.disabled, &.disabled:hover, &.disabled:focus
+			@include icon(2, 38)
+
+	&.icon-pairing
+		@include icon(0, 39)
+
+		&:hover, &:focus
+			@include icon(1, 39)
+
+		&.active
+			@include icon(2, 39)
+
+		&.active:hover
+			@include icon(3, 39)
+
+	&.icon-fulltext
+		@include icon(0, 40)
+
+		&:hover, &:focus
+			@include icon(1, 40)
+
+		&.disabled, &.disabled:hover, &.disabled:focus
+			@include icon(2, 40)
+
+	&.icon-settings
+		@include icon(0, 41)
+
+		&:hover, &:focus
+			@include icon(1, 41)
+
+		&.disabled, &.disabled:hover, &.disabled:focus
+			@include icon(2, 41)
+
+	&.icon-duplicate
+		@include icon(0, 43)
+
+		&:hover, &:focus
+			@include icon(1, 43)
+
+		&.disabled, &.disabled:hover, &.disabled:focus
+			@include icon(2, 43)
+
+	// Top menu icons
+
+	&.icon-account
+		@include icon(0, 44)
+
+		&:not(.no-hover):hover
+			@include icon(1, 44)
+
+		&.disabled, &.disabled:hover, &.disabled:focus
+			@include icon(2, 44)
+
+	&.icon-logout
+		@include icon(0, 45)
+
+		&:not(.no-hover):hover
+			@include icon(1, 45)
+
+		&.disabled, &.disabled:hover, &.disabled:focus
+			@include icon(2, 45)
+
+	&.icon-login
+		@include icon(0, 46)
+
+		&:not(.no-hover):hover
+			@include icon(1, 46)
+
+		&.disabled, &.disabled:hover, &.disabled:focus
+			@include icon(2, 46)
+
+	&.icon-notification
+		@include icon(0, 47)
+
+		&:not(.no-hover):hover
+			@include icon(1, 47)
+
+		&.disabled, &.disabled:hover, &.disabled:focus
+			@include icon(2, 47)
+
+	&.icon-invoices
+		@include icon(0, 48)
+
+		&:not(.no-hover):hover
+			@include icon(1, 48)
+
+		&.disabled, &.disabled:hover, &.disabled:focus
+			@include icon(2, 48)
+
+	&.icon-top-menu
+		@include icon(0, 49)
+
+		&:not(.no-hover):hover
+			@include icon(1, 49)
+
+		&.disabled, &.disabled:hover, &.disabled:focus
+			@include icon(2, 49)
+
+	// Logos icons
+
+	&.icon-feed-heureka\.cz, &.icon-feed-heureka\.sk
+		@include icon(0, 0)
+
+		&:hover, &:focus
+			@include icon(1, 0)
+
+	&.icon-feed-zbozi\.cz, &.icon-feed-zbozi\.cz\.1
+		@include icon(0, 1)
+
+		&:hover, &:focus
+			@include icon(1, 1)
+
+	&.icon-feed-sklik\.cz
+		@include icon(0, 2, 40px, 20px)
+
+		&:hover, &:focus
+			@include icon(1, 2, 40px, 20px)
+
+	&[class^=icon-feed-google]
+		@include icon(0, 3)
+
+		&:hover, &:focus
+			@include icon(1, 3)
+
+.process-status-icon
+	padding-right: 15px
+	.icon
+		margin-right: 5px

@@ -1,0 +1,423 @@
+@mixin stripe()
+	height: $stripe-height
+	background: $stripe-background-color
+	color: $stripe-text-color
+	overflow: hidden
+	line-height: $stripe-height
+
+	a
+		color: $stripe-link-color
+
+body
+	background: $bg-color
+	text-align: left
+	font-size: 10pt
+	font-family: $base-font-family
+	@include selectbox()
+
+#document
+	position: relative
+	min-height: 100%
+	margin-bottom: $footer-height * -1
+	@include clearfix
+
+#{$content-selector}
+	@include clearfix
+	position: relative
+	//width: $document-width
+	margin: 0 auto
+	text-align: left
+
+/* Header */
+
+#header
+	min-height: 100px
+	margin-bottom: 10px
+	background: $menu-background-color
+
+	.top-wrapper
+		//max-width: $document-width
+		margin: auto
+		@include clearfix()
+
+#logo
+	background: url('../img/logo-mergado.png') no-repeat left center
+	color: $logo-color
+	display: inline-block
+	float: left
+	height: $menu-height / 2
+	position: relative
+	top: $menu-height / 4
+	width: 160px
+	padding-right: 40px
+
+	a
+		display: inline-block
+		width: 100%
+		height: 100%
+
+		h1
+			height: 100%
+			@include hidden-text
+
+/* Menu */
+
+#menu
+	height: $menu-height
+	color: $menu-text-color
+	line-height: $menu-height
+	font-size: 12pt
+	font-weight: bold
+	display: inline-block
+	float: left
+
+	li
+		float: left
+		margin-right: 1.5em
+
+		a
+			color: $menu-link-color
+
+			&:hover, &:focus
+				text-decoration: underline
+
+		&.active
+			a
+				color: $menu-active-text-color
+
+				&:hover
+					text-decoration: underline
+
+#submenu
+	min-height: $menu-sub-height
+	background: $menu-sub-background-color
+	color: $menu-sub-text-color
+	line-height: $menu-sub-height
+	font-size: 11pt
+	font-weight: bold
+	z-index: 999
+	@include clearfix()
+	transition: box-shadow $animation-speed-normal
+
+	&.is_stuck
+		@include pretty-shadow
+
+	.wrapper
+		position: relative
+		//max-width: $document-width
+		margin: auto
+
+	.context-selector
+		float: left
+		width: 240px
+		@include border-box-sizing
+		height: $menu-sub-height
+
+		& > div
+			width: 50%
+			float: left
+			position: relative
+			text-align: left
+			background: rgba(#fff, 0.25)
+			height: $menu-sub-height
+			cursor: pointer
+			@include no-select()
+
+			&.alone
+				width: 100%
+
+			.click-arrow
+				width: 50px
+				height: 50px
+				float: right
+				display: block
+				text-align: center
+
+			& > span
+				display: inline-block
+				width: 100%
+				height: 100%
+
+				&:hover
+					background: rgba(#fff, 0.25)
+
+				& > span:nth-child(1)
+					text-overflow: ellipsis
+					white-space: nowrap
+					max-width: calc(100% - 50px)
+					@include border-box-sizing
+					overflow: hidden
+					display: inline-block
+					max-height: 100%
+					color: #fff
+					padding: 0 0 0 20px
+
+					&:only-child
+						max-width: 100%
+						padding: 0 20px
+
+			&.open
+				ul
+					display: block
+
+			& ul
+				display: none
+				position: absolute
+				top: $menu-sub-height
+				left: 0
+				background: $stripe-background-color
+				z-index: 100
+				min-width: 240px
+				white-space: nowrap
+				margin: 0
+				padding: 0
+				max-height: 320px
+				overflow: auto
+				box-shadow: 0px 15px 0px -5px rgba(0, 0, 0, 0.25)
+
+				& li
+					margin: 0
+					padding: 0
+					width: 100%
+					text-align: left
+
+					&:hover
+						background: rgba(#fff, 0.25)
+
+					&.separate
+						border-bottom: 5px solid rgba(#000, 0.25)
+
+					a
+						display: inline-block
+						width: 100%
+						@include border-box-sizing
+						height: 100%
+						padding: 0 80px 0 40px
+						margin: 0
+						position: relative
+
+						&.eshop
+							padding-left: 20px
+
+						.faded
+							display: inline-block
+							text-transform: uppercase
+							opacity: 0.25
+							position: absolute
+							right: 10px
+							bottom: 5px
+							bottom: calc(50% - 10px)
+							font-size: 8pt
+							font-weight: bold
+							line-height: 20px
+							height: 20px
+
+	ul
+		float: left
+
+		li
+			float: left
+			margin-left: 1.5em
+
+			a
+				color: $menu-sub-link-color
+
+				&:hover, &:focus
+					text-decoration: underline
+
+			&.active a
+				color: $menu-sub-active-text-color
+
+				&:hover
+					text-decoration: underline
+
+#user
+	height: $menu-height
+	float: right
+	color: $light-color
+
+	ul
+		list-style: none
+		margin: 0
+		padding: 0
+		@include clearfix
+
+		& > li
+			display: block
+			float: left
+			margin: 0
+			padding: 0
+			min-width: 40px
+			line-height: $menu-height
+			height: $menu-height
+			@include border-box-sizing
+
+			&.faded
+				opacity: 0.25
+
+			&.hoverable
+				@include no-select
+
+				&:hover
+					background: rgba(#fff, 0.15)
+
+			&.username
+				padding-right: 10px
+
+			a.fill
+				display: inline-block
+				text-align: center
+				padding: 15px
+				line-height: normal
+				cursor: pointer
+
+				.icon
+					display: block !important
+
+			&#notifications-button
+				&.open
+					background-color: $notifications-base-color
+
+			&.avatar
+				padding: 10px
+
+				img
+					border-radius: 5px
+					height: 100%
+
+			&#user-top-menu
+				max-width: 0px
+				min-width: 0px
+				overflow: hidden
+				transition: max-width $animation-speed-normal
+				background: rgba(#000, 0.25)
+
+				&.open
+					max-width: 200px
+
+				& > ul
+					height: $menu-height
+					overflow: hidden
+					white-space: nowrap
+					font-size: 0
+
+					li
+						float: none
+						display: inline-block
+						font-size: normal
+
+/* Language - Unused */
+
+#language
+	@include stripe()
+	position: absolute
+	right: 250px
+	top: 0
+	margin: 0
+	padding: 0
+	font-size: 1.05em
+	overflow: visible
+
+	h2
+		@include visually-hidden()
+
+	p.active
+		background: url(../img/language.png) left 1.6em no-repeat
+		padding: 0 0 0 25px
+		cursor: pointer
+
+		.arrow
+			display: inline-block
+			width: 8px
+			height: 8px
+			margin: 0.1em 0.5em 0
+
+		&:hover, &.open
+			color: $menu-hover-color
+			text-decoration: none
+
+			.arrow
+				background-position: center -8px
+
+	ul
+		display: none
+		position: absolute
+		top: 4em
+		margin: 0
+		padding: 0
+		width: 120px
+		list-style: none
+		background: $stripe-background-color
+
+		li
+			display: block
+			width: 120px
+			line-height: 1.5em
+
+			a
+				display: block
+				width: 120px - 2*5px
+				padding: 3px 5px
+
+			a:hover, a:active
+				color: $menu-hover-color
+
+
+/* Flash container */
+
+#flashes-container
+	&.floating
+		.flashes-wrapper
+			position: fixed
+			top: 0px
+			left: 0px
+			width: 100%
+			z-index: 1000
+
+			#flashes
+				//width: $document-width
+				margin: 0px auto
+
+				.flash
+					padding: $summary-padding
+					margin-bottom: 10px
+
+				.flash-shadow
+					box-shadow: 0px 10px 20px -10px rgba(0,0,0,0.5)
+
+	.flash
+		position: relative
+		margin-bottom: 10px
+
+	.flash-shadow
+		transition: box-shadow $animation-speed-normal
+
+/* Content */
+
+#content
+	float: left
+	width: 100%
+	padding: 0 0 $footer-height 0
+
+section.main-column
+	float: left
+	width: $column-main-width
+
+div.side-column
+	float: right
+	width: $column-side-width
+
+/* Footer */
+
+body > footer
+	@include stripe()
+	position: relative
+	height: $footer-height
+	width: 100%
+
+	address
+		position: relative
+		//width: $document-width
+		margin: 0 auto
+		text-align: left
+		font-style: normal

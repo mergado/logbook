@@ -1,0 +1,33 @@
+<IfModule mod_headers.c>
+  <FilesMatch "\.(ttf|ttc|otf|eot|woff|woff2|font.css|css)$">
+	Header set Access-Control-Allow-Origin "*"
+  </FilesMatch>
+</IfModule>
+
+<IfModule mod_rewrite.c>
+	<IfModule mod_negotiation.c>
+        Options -MultiViews
+    </IfModule>
+
+
+
+    RewriteEngine On
+
+       # Build Mergado App Cloud rewrite base URL
+       SetEnvIfNoCase Request_URI (/apps/.+?/) MERGADO_APPCLOUD_REWRITE_BASE=$1
+
+      	#RewriteBase /apps/logbook.dev
+       #RewriteBase /
+
+   	# Redirect Trailing Slashes If Not A Folder
+   	# RewriteCond %{REQUEST_URI} !^
+       RewriteCond %{REQUEST_FILENAME} !-d
+       RewriteRule ^(.*)/$ %{env:MERGADO_APPCLOUD_REWRITE_BASE}$1 [L,R=301]
+
+       # Handle Front Controller
+       RewriteCond %{REQUEST_FILENAME} !-d
+       RewriteCond %{REQUEST_FILENAME} !-f
+
+       RewriteRule ^ %{env:MERGADO_APPCLOUD_REWRITE_BASE}index.php [L]
+
+</IfModule>

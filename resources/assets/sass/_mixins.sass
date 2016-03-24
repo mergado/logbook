@@ -1,0 +1,165 @@
+@mixin clearfix()
+	zoom: 1
+	&:after
+		content: ''
+		display: table
+		clear: both
+
+@mixin border-box-sizing()
+	-webkit-box-sizing: border-box
+	-moz-box-sizing: border-box
+	box-sizing: border-box
+
+@mixin box-shadow($horizontal-len, $vertical-len, $blur, $spread, $color)
+	-webkit-box-shadow: $horizontal-len $vertical-len $blur $spread $color
+	-moz-box-shadow: $horizontal-len $vertical-len $blur $spread $color
+	box-shadow: $horizontal-len $vertical-len $blur $spread $color
+
+@mixin inset-box-shadow($horizontal-len, $vertical-len, $blur, $spread, $color)
+	-webkit-box-shadow: inset $horizontal-len $vertical-len $blur $spread $color
+	-moz-box-shadow: inset $horizontal-len $vertical-len $blur $spread $color
+	box-shadow: inset $horizontal-len $vertical-len $blur $spread $color
+
+// http://compass-style.org/reference/compass/utilities/text/ellipsis/
+@mixin ellipsis($no-wrap: true)
+	@if $no-wrap
+		white-space: nowrap
+	overflow: hidden
+	-ms-overflow: ellipsis
+	-o-overflow: ellipsis
+	text-overflow: ellipsis
+
+// completely hidden element
+@mixin hidden()
+	display: none !important
+	visibility: hidden
+
+// only visually hidden element (accessible to screen readers etc.)
+@mixin visually-hidden()
+	border: 0
+	clip: rect(0 0 0 0)
+	height: 1px
+	margin: -1px
+	overflow: hidden
+	padding: 0
+	position: absolute
+	width: 1px
+
+// hidden but accessible element (accessible by tab key or so)
+@mixin visually-hidden-focusable()
+	@include visually-hidden()
+
+	&:active, &:focus
+		clip: auto
+		height: auto
+		margin: 0
+		overflow: visible
+		position: static
+		width: auto
+
+// only invisible element
+@mixin invisible()
+	visibility: hidden
+
+@mixin opacity($value)
+	$ms-value: $value * 100
+	zoom: 1
+	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=#{$ms-value})"
+	filter: alpha(opacity=#{$ms-value})
+	-moz-opacity: $value
+	-khtml-opacity: $value
+	opacity: $value
+
+@mixin corner-triangle($color, $size: 20px)
+	&:after
+		content: ''
+		display: block
+		width: 0px
+		height: 0px
+		position: absolute
+		top: 0
+		left: 0
+		border-style: solid
+		border-width: $size $size 0 0
+		border-color: $color transparent transparent transparent
+
+@mixin horizontal-dotted-separator($size: 20px)
+	margin-bottom: $size
+	padding-bottom: $size
+	border-bottom: 1px dotted $horizontal-dotted-separator-color
+	@include border-box-sizing()
+
+@mixin pretty-border()
+	border: 1px solid $content-line-color
+
+@mixin no-select
+	-webkit-touch-callout: none
+	-webkit-user-select: none
+	-khtml-user-select: none
+	-moz-user-select: none
+	-ms-user-select: none
+	user-select: none
+
+@mixin centered-line
+	background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAAA1BMVEXby6NBdxvcAAAACklEQVQI12NgAAAAAgAB4iG8MwAAAABJRU5ErkJggg==) 50% 50% repeat-x
+
+@mixin hidden-text
+	text-indent: 110%
+	white-space: nowrap
+	overflow: hidden
+	font-size: 0
+
+@mixin animation ($parameters)
+	animation: $parameters
+	-webkit-animation: $parameters
+	-moz-animation: $parameters
+	-o-animation: $parameters
+	transform: translateZ(0)
+
+@mixin transform($transform)
+	-webkit-transform: $transform
+	-moz-transform: $transform
+	-ms-transform: $transform
+	transform: $transform
+
+@mixin keyframes ($animation-name)
+	@-webkit-keyframes #{$animation-name}
+		@content
+	@-moz-keyframes #{$animation-name}
+		@content
+	@keyframes #{$animation-name}
+		@content
+
+@mixin linear-gradient($top-color, $bottom-color)
+	background: linear-gradient(to bottom, $top-color 5%, $bottom-color 100%)
+	background-color: $bottom-color
+
+@mixin emboss($opacity: 0.15, $opacity2: 0.15)
+	box-shadow: inset rgba(#fff, $opacity) 1px 1px 0px, inset rgba(#000, $opacity2) -1px -1px 0px
+
+@mixin no-pointer-events
+	pointer-events: none
+
+@mixin dotted-line($spacing: 3, $color: #000)
+	$percentage: percentage(1 / $spacing)
+	$pixels: $spacing+0px
+	background-image: linear-gradient(to right, $color $percentage, rgba(255,255,255,0) 0%)
+	background-position: 0% 70%
+	background-size: $pixels 1px
+	background-repeat: repeat-x
+
+@mixin strike-through
+	&::after
+		display: block
+		width: 10px
+		height: 10px
+		content: ''
+		background: linear-gradient(to top left, transparent 0%, transparent calc(50% - 0.8px), $light-color 50%, transparent calc(50% + 0.8px), transparent 100%)
+		position: relative
+		top: 1px
+
+@mixin input-focus-outline($color: $form-border-color-focus)
+	outline: 3px solid $color !important
+
+@mixin pretty-shadow
+	box-shadow: 0px 5px 15px -5px rgba(0, 0, 0, 0.75)

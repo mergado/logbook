@@ -1,0 +1,94 @@
+.panel
+	background: $summary-bg-color
+	border: 1px solid $summary-line-color
+	margin: 10px 0 20px 0
+	@include border-box-sizing()
+	padding: 0
+	height: 100px
+	width: 100%
+	display: table
+	table-layout: fixed
+	position: relative
+
+	.item
+		display: table-cell
+		height: 100%
+		text-align: center
+		border-right: 1px $summary-line-color solid
+		background: linear-gradient(to bottom, #fff 20%, $bg-color 100%)
+
+		&:last-child
+			border-right: none
+
+		header
+			padding: 0
+			margin: 0
+			background: none
+			position: relative
+			min-height: initial
+
+			h1, h2, h3
+				border: none
+				background: none
+				text-transform: none
+				font-size: 10pt
+
+		.last-info
+			color: $light-color
+
+		&.no-vip
+			line-height: 100px
+			color: $light-color
+
+	.bottom
+		display: table
+		bottom: 0
+		height: 40px
+		padding-top: 10px
+
+		.buttons-area
+			width: 1%
+			white-space: nowrap
+			display: table-cell
+			vertical-align: middle
+			padding: 0 10px 10px 0
+
+		.graphbox-wrapper
+			height: 30px
+			padding: 0 10px 10px 10px
+			display: table-cell
+			line-height: 20px
+			font-size: 8pt
+			color: $light-color
+
+			.graphbox
+				background: $bg-color
+				@include pretty-border
+				box-shadow: 0px 0px 3px rgba(#000, 0.1) inset
+				border-radius: 6px
+
+				.graph-wrapper
+					padding: 5px
+					height: 20px
+
+					.graph
+						width: 100%
+						height: 20px
+						display: table
+						background: white
+						box-shadow: 0px 0px 3px rgba(#000, 0.1)
+						border-radius: 4px
+						overflow: hidden
+
+						.bar
+							display: table-cell
+							overflow: hidden
+							white-space: nowrap
+							min-width: 0px
+
+					.progress-loop, .progress-stop
+						width: 100%
+						height: 100%
+						border-radius: 4px
+						@include pretty-border
+						@include border-box-sizing

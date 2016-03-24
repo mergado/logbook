@@ -1,0 +1,441 @@
+$widget-background-color: rgba(#fff, 0.5)
+$widget-header-background-color: #fff
+$detail-button-color: #6EA625
+
+.app-store
+
+	.app-list
+		.item
+			background: rgba(#fff, 0.5)
+			color: $text-color
+			width: 470px
+			border: 1px $content-line-color solid
+			@include border-box-sizing
+			float: left
+			transition: border-color $animation-speed-fast, background-color $animation-speed-fast
+			margin-bottom: 20px
+
+			&:hover
+				border-color: darken($content-line-color, 25%)
+				background: rgba(#fff, 0.75)
+
+			&:nth-child(2n+1)
+				margin-right: 20px
+
+			.color-stripe
+				height: 5px
+
+			.header-wrapper
+				padding-top: 5px
+				margin: 0 10px 0 10px
+
+				header
+					display: table
+					height: 25px
+					width: 100%
+					@include border-box-sizing
+					background: none
+					color: #000
+					font-family: $base-font-family
+					border-bottom: $content-line-color 1px solid
+
+					.title
+						display: table-cell
+						line-height: 30px
+						text-align: left
+
+						& h3
+							font-family: $base-font-family !important
+							color: #000
+							font-size: 12pt !important
+
+							a
+								color: #000
+
+					.price
+						display: table-cell
+						width: 10px
+						font-size: 12pt
+						white-space: nowrap
+						text-align: right
+						color: $text-color
+
+						.type
+							color: $light-color
+							font-size: 8pt
+							font-weight: bold
+							padding-right: 5px
+
+			.content-wrapper
+				padding: 10px
+
+				.content
+					display: table
+					width: 100%
+
+					.sidebar
+						width: 10px
+						display: table-cell
+
+						.logo
+							border-bottom: $content-line-color 1px solid
+							margin-bottom: 10px
+
+							img
+								max-width: 100px
+								max-height: 100px
+								display: block
+
+						.detail-button
+							@include small-button($detail-button-color, #fff, 100px)
+							margin-right: 0
+							font-weight: normal
+
+					.main
+						display: table-cell
+						vertical-align: top
+						width: 99%
+						padding-right: 10px
+
+						.scope
+							font-weight: bold
+							margin-bottom: 10px
+							color: $link-dark-color
+							font-size: 8pt
+
+.app-store-detail
+	color: $text-color
+
+	h3
+		font-size: 10pt
+		font-weight: bold
+		color: #000
+
+	.wrapper
+		display: table
+		width: 100%
+
+		.sidebar-wrapper
+			display: table-cell
+			width: 200px
+
+			.sidebar
+				vertical-align: top
+				padding: 10px
+				background: rgba(#fff, 0.5)
+
+				.logo
+					img
+						max-width: 200px
+						max-height: 200px
+						display: block
+
+				.color-stripe
+					height: 10px
+					margin-bottom: 10px
+
+				.info
+					font-size: 10pt
+					border-bottom: $content-line-color 1px solid
+					margin-bottom: 10px
+					padding-bottom: 10px
+					text-align: right
+					text-overflow: ellipsis
+					overflow: hidden
+					max-width: 100%
+
+					&:last-child
+						border-bottom: none
+						margin-bottom: 0
+						padding-bottom: 0
+
+					h3
+						float: left
+						color: $text-color
+
+					&.price
+						font-size: 12pt
+
+						.type
+							font-size: 8pt
+							color: $link-dark-color
+							font-weight: bold
+
+		.sidebar-note
+			padding: 10px 10px 0 10px
+			color: $light-color
+
+		.main
+			display: table-cell
+			vertical-align: top
+			padding-left: 20px
+			font-size: 10pt
+			color: $text-color
+
+			section
+				margin-bottom: 20px
+
+				&.enable-app
+					padding: 10px
+					background: rgba(#fff, 0.5)
+					border-top: 10px solid $content-line-color
+
+			h2
+				border-bottom: $content-line-color 1px solid
+				margin-bottom: 10px
+				padding-bottom: 10px
+
+			p
+				margin-bottom: 20px !important
+
+			table.subject-list
+				table-layout: fixed
+
+				td
+					border-right: $content-line-color 1px dotted
+					padding: 5px 10px !important
+					overflow: hidden
+					text-overflow: ellipsis
+					white-space: nowrap
+
+					&.eshop
+						color: $text-color
+
+				tr
+					&.blocked
+						background-color: #eee
+						color: $link-dark-color
+						opacity: 0.5
+						@include no-pointer-events
+
+					&.enabled
+						background: rgba($positive-color, 0.1)
+
+						& td.checkbox
+							background: rgba($positive-color, 0.5)
+
+					&.disabled
+						background: rgba($negative-color, 0.1)
+
+						& td.checkbox
+							background: rgba($negative-color, 0.5)
+
+				small
+					font-size: 8pt
+
+					&.light
+						color: $light-color
+
+				input[type=checkbox]
+					margin: 0 !important
+					padding: 0 !important
+
+			.list-actions
+				text-align: right
+				float: right
+				line-height: 40px
+
+			.form-info
+				font-size: 8pt
+
+			.submit
+				margin-top: 10px
+
+.apps-widgets
+	color: $text-color
+	margin: -10px -10px !important
+	padding: 10px
+	display: table
+
+	.widget-wrapper
+		display: table-cell
+		float: left
+		@include border-box-sizing
+		//width: 234px /* 475px */
+		//margin-right: 8px /* 10px */
+		color: $text-color
+		height: 100vh
+		//@include pretty-border()
+
+		&:nth-child(4n+4)
+			margin-right: 0
+
+		&:nth-child(4n+4)
+			margin-bottom: 8px
+
+		&:last-child
+			margin-bottom: 0 !important
+			margin-top: -35px
+
+		&:hover
+			header
+				.app-icons
+					opacity: 1
+
+		header
+			border-bottom: 5px solid $text-color
+			position: relative
+			background: $widget-header-background-color
+			border-bottom-color: #e6e885
+
+			& > div
+				height: 25px
+				padding-left: 10px
+				padding-top: 5px
+
+			.app-icons
+				display: block
+				position: absolute
+				top: 0
+				right: 0
+				padding: 5px
+				opacity: 0.5
+				transition: opacity $animation-speed-fast
+
+				.icon
+					vertical-align: middle
+					padding: 0
+					margin: 0
+
+			h3
+				font-size: 10pt
+				display: inline-block
+				color: #000
+				padding-right: 30px
+
+				a
+					color: #000
+
+			small
+				color: lighten($text-color, 50%)
+
+		.faux-table
+			width: 100%
+			height: 100%
+
+		.faux-cell
+			vertical-align: top
+
+		.widget
+			background: $widget-background-color
+			height: calc(100% - 35px)
+			box-shadow: inset 0px -20px 80px -55px
+
+			.content
+				/* Basic widget style collection. For use in various widgets */
+
+				@include border-box-sizing
+				height: 100%
+				position: relative
+				color: $text-color
+
+				/* Snippets need to have 100% height */
+
+				div[id^='snippet']
+					height: 100%
+
+				.widget-table
+					width: 100%
+					padding-top: 10px
+					table-layout: fixed
+
+					.left-column
+						padding-left: 10px
+
+					.right-column
+						display: inline
+						text-overflow: ellipsis
+						overflow: hidden
+						white-space: nowrap
+						float: right
+						padding-right: 10px
+						max-width: 130px
+
+		&.add-app-wrapper
+			background: url('../img/line_stripes.png') top left
+			text-align: center
+			transition: border-color $animation-speed-fast
+
+			&:hover
+				border-color: lighten($text-color, 25%)
+
+			.faux-cell
+				padding: 10px 20px 10px 20px
+				color: lighten(mix($text-color, $content-line-color, 75%), 25%)
+				transition: color $animation-speed-fast
+
+				img
+					opacity: 0.25
+					transition: opacity $animation-speed-fast
+
+				&:hover
+					color: $text-color
+
+					img
+						opacity: 1
+
+.app-presenter
+	color: $text-color
+
+	h3
+		font-size: 10pt
+		font-weight: bold
+		color: #000
+
+	.wrapper
+		display: table
+		width: 100%
+
+		& > div
+			display: table-cell
+			vertical-align: top
+
+		div.sidebar-wrapper
+			width: 100px
+
+			.sidebar
+				vertical-align: top
+				padding: 10px
+				background: rgba(#fff, 0.5)
+
+				.logo
+					img
+						max-width: 100px
+						max-height: 100px
+						display: block
+
+				.color-stripe
+					height: 10px
+
+				.info
+					font-size: 10pt
+					border-bottom: $content-line-color 1px solid
+					margin-top: 10px
+					margin-bottom: 10px
+					padding-bottom: 10px
+					text-align: right
+					text-overflow: ellipsis
+					overflow: hidden
+					max-width: 100%
+
+					&:last-child
+						border-bottom: none
+						margin-bottom: 0
+						padding-bottom: 0
+
+					h3
+						float: left
+						color: $text-color
+
+		div.main
+			padding-left: 20px
+
+			h2
+				border-bottom: $content-line-color 1px solid
+				margin-bottom: 10px
+				padding-bottom: 10px
+
+.app-admin
+	table
+		input[type=radio]
+			margin-right: 10px
