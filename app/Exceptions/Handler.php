@@ -68,8 +68,7 @@ class Handler extends ExceptionHandler
             return redirect()->route('error', ['message' => trans('error.authorization')]);
         }
 
-        // error if on production
-        if (app()->environment() == 'production') {
+        if(app()->environment() == 'production') {
             return redirect()->route('error');
 
         }
