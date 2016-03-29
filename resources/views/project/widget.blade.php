@@ -26,12 +26,12 @@
                             @endforeach
                         @else
                             <tr>
-                                <td class="centered" style="zoom: 1.2">
+                                <td class="centered">
                                     <b>{!! trans('log.no') !!}</b>
                                 </td>
                             </tr>
                             <tr>
-                                <td class="centered" style="zoom: 1.2; padding-top: 10px;">
+                                <td class="centered" style="padding-top: 10px;">
                                     <b>{!! trans('log.write_first') !!}</b>
                                 </td>
                             </tr>

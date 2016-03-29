@@ -260,7 +260,7 @@ class ProjectLogsController extends Controller
 
         $logs = Log::where('project_id', $projectId)
             ->join('users', 'logs.user_id', '=', 'users.id')
-            ->orderBy('logs.created_at', 'desc')
+            ->orderBy('logs.date', 'desc')
             ->select('logs.body as ' . trans('log.body'), 'logs.date as '. trans('log.date'), 'users.name as ' . trans('log.user'))
             ->get();
 
