@@ -264,7 +264,7 @@ class ProjectLogsController extends Controller
             ->select('logs.body as ' . trans('log.body'), 'logs.date as '. trans('log.date'), 'users.name as ' . trans('log.user'))
             ->get();
 
-        Excel::create('CSV-export-'.$project->name,
+        Excel::create('CSV-export-' . iconv('UTF-8', 'ASCII//TRANSLIT', $project->name),
             function($excel) use ($logs, $project) {
 
             $excel->sheet('Sheetname', function($sheet) use ($logs, $project) {
