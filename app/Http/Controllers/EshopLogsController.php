@@ -35,6 +35,10 @@ class EshopLogsController extends Controller
         $eshop = $eshopModel->query($eshopId)->fields(['id', 'name', 'permissions'])->get();
         $projects = $eshopModel->query($eshopId)->projects()->limit(30)->get()->data;
 
+        usort($projects, function($a, $b) {
+            return strcmp($a->name, $b->name);
+        });
+
         foreach($projects as $project) {
             $project->logs = Log::where('project_id', $project->id)
                 ->join('users', 'logs.user_id', '=', 'users.id')
