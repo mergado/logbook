@@ -26,6 +26,7 @@
                 @else
                     <textarea rows="5" maxlength="1000"  cols="80" name="body" id="body" class="materialize-textarea">{!! $log->body !!}</textarea>
                 @endif
+                <span style="float: right;">{!! trans('general.chars_left') !!}: <span id="counter">1000</span></span>
 
                 <button class="button" type="submit" name="action">
                     {!! trans('log.submit') !!}

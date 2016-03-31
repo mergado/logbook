@@ -22,6 +22,7 @@
                 <label for="body">{!! trans('log.body') !!} <span style="color: grey">({!! trans('general.max_length') !!})</span></label>
 
                 <textarea rows="5" maxlength="1000" name="body" id="body" class="materialize-textarea">{!! Request::old('body') !!}</textarea>
+                <span style="float: right;">{!! trans('general.chars_left') !!}: <span id="counter">1000</span></span>
 
                 <button class="button right" type="submit" name="action">
                     {!! trans('log.submit') !!}

@@ -43,12 +43,24 @@
 
             iconizatorIcons.iconize($('[class^="icon-"]')); // Common icon
 
+            var textAreaCounter = function($txtArea) {
+                var count = (1001 - $txtArea.val().length - $txtArea.val().split("\n").length);
+                if(count < 0) count = 0;
+                $("#counter").html(count);
+            };
+
             var $textarea = $("textarea#body");
 
             $textarea.each(function(){
                 autosize(this);
             }).on('autosize:resized', function(){
                 Mergado.tellHeight();
+            });
+
+            textAreaCounter($textarea);
+
+            $textarea.keyup(function(){
+                textAreaCounter($textarea);
             });
         });
     </script>
