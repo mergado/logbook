@@ -21,7 +21,7 @@
     @if (App::environment('production'))
         <script src="https://app.mergado.com/static/js/apps/MessageApi.min.js"></script>
     @else
-        <script src="http://dev.mergado.com/static/js/apps/MessageApi.min.js"></script>
+        <script src="https://dev.mergado.com/static/js/apps/MessageApi.min.js"></script>
     @endif
 
     <script type="text/javascript" src="{!! asset('js/autosize.js') !!}"></script>

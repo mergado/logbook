@@ -36,7 +36,7 @@
             @foreach($logs as $log)
             <tr>
                 <td>{!! date('j. n. Y', strtotime($log->date)) !!}</td>
-                <td title="{!! $log->body !!}" class="ellipsis">{!! $log->body !!}</td>
+                <td title="{!! htmlentities($log->body) !!}" class="ellipsis">{!! htmlentities($log->body) !!}</td>
                 <td>{!! $log->name !!}</td>
                 <td>
                     <a href="{!! action('ProjectLogsController@edit', ['eshop_id' => $eshopId, 'project_id' => $project->id, 'id' => $log->id]) !!}" class="icon-edit">

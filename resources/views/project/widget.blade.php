@@ -17,7 +17,7 @@
                         <tbody>
                         @if(count($logs) > 0)
                             @foreach($logs as $log)
-                                <tr title="{!! $log->body !!}">
+                                <tr title="{!! htmlentities($log->body) !!}">
                                     <td class="left-column">{!! date('j. n. Y', strtotime($log->date)) !!}</td>
                                     <td class="right-column ellipsis">
                                         {!! $log->name !!}
