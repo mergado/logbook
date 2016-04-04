@@ -52,6 +52,11 @@
             var $textarea = $("textarea#body");
 
             $textarea.each(function(){
+                $this = $(this)
+                textAreaCounter($this);
+                $this.keyup(function(){
+                    textAreaCounter($this);
+                });
                 autosize(this);
             }).on('autosize:resized', function(){
                 Mergado.tellHeight();
