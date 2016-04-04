@@ -14,7 +14,7 @@ return array (
             prevYear: \'Předchozí rok\',
             nextYear: \'Následující rok\',
             selectDecade: \'Vybrat desetiletí\',
-            prevDecade: \'Předchozí desetiletí,
+            prevDecade: \'Předchozí desetiletí\',
             nextDecade: \'Následující desetiletí\',
             prevCentury: \'Předchozí století\',
             nextCentury: \'Následující století\',
