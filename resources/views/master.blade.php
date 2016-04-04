@@ -62,11 +62,6 @@
                 Mergado.tellHeight();
             });
 
-            textAreaCounter($textarea);
-
-            $textarea.keyup(function(){
-                textAreaCounter($textarea);
-            });
         });
     </script>
 
