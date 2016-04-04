@@ -158,7 +158,8 @@ return [
 
         Collective\Html\HtmlServiceProvider::class,
         'Maatwebsite\Excel\ExcelServiceProvider',
-        'GrahamCampbell\HTMLMin\HTMLMinServiceProvider'
+        'GrahamCampbell\HTMLMin\HTMLMinServiceProvider',
+        GeneaLabs\LaravelCaffeine\LaravelCaffeineServiceProvider::class,
 
     ],
 
