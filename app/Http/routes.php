@@ -15,6 +15,7 @@ Route::group(['middleware' => ['web']], function () {
 	Route::get('oauth2', ['uses' => 'OAuthController@token', 'as' => 'token']);
 	Route::get('error', ['uses' => 'ErrorController@index', 'as' => 'error']);
 	Route::get('404page', ['uses' => 'ErrorController@notFound', 'as' => '404']);
+	Route::get('error/widget', ['uses' => 'ErrorController@widget', 'as' => 'errors.widget']);
 	Route::get('eshop/{eshop_id}/auth', ['uses' => 'OAuthController@auth', 'as' => 'auth']);
 });
 

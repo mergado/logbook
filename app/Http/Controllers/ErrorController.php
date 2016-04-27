@@ -23,4 +23,8 @@ class ErrorController extends Controller
 		return view('errors.404');
 	}
 
+	public function widget() {
+		return view('errors.widget');
+	}
+
 }

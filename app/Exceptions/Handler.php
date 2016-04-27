@@ -53,6 +53,12 @@ class Handler extends ExceptionHandler
     public function render($request, Exception $e)
     {
 
+        $isWidget = preg_match("/\b^widget\b/", $request->path());
+
+        if($isWidget) {
+            return redirect()->route('errors.widget');
+        }
+
         if ($e instanceof UnauthorizedException) {
             $routeId = $request->route()->parameter('eshop_id');
             $auth = new Auth();
