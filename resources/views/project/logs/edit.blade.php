@@ -33,7 +33,7 @@
                 </button>
 
                 @if ($fromEshop)
-                    <a href="{!! action('EshopLogsController@index', ['eshop_id' => $eshopId]) !!}"
+                    <a href="{!! action('EshopController@index', ['eshop_id' => $eshopId]) !!}"
                        class="button grey" style="margin-top: 30px;">
                 @else
                     <a href="{!! action('ProjectLogsController@index', ['eshop_id' => $eshopId, 'project_id' => $project->id ]) !!}"

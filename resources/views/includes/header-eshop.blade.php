@@ -5,7 +5,7 @@
             <header class="cf">
                 <div class="app cf">
                     <div class="logo" style="background-color: #e6e885">
-                        <a href="{!! action('EshopLogsController@index', ['eshop_id' => $eshop->id]) !!}"><img src="{!! asset('logbook-logo-space.png') !!}" alt="Logbook"></a>
+                        <a href="{!! action('EshopController@index', ['eshop_id' => $eshop->id]) !!}"><img src="{!! asset('logbook-logo-space.png') !!}" alt="Logbook"></a>
                     </div>
                     <div class="logotype spacing">
                         <h1>Logbook</h1>

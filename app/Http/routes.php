@@ -32,7 +32,7 @@ Route::group(['middleware' => ['web']], function () {
 Route::group(['middleware' => ['web', 'oauth']], function () {
 
 
-	Route::get('eshop/{eshop_id}', 'EshopLogsController@index');
+	Route::get('eshop/{eshop_id}', 'EshopController@index');
 
 	Route::get('/logout', function(){
 		//invisible to normal user in mergado

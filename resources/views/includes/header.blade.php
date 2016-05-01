@@ -22,7 +22,7 @@
                         </div>
 
                         <h3 style="float: right;">
-                            <a href="{!! action('EshopLogsController@index', ['eshop_id' => $eshopId]) !!}">{!! trans('eshop.list_all') !!}</a>
+                            <a href="{!! action('EshopController@index', ['eshop_id' => $eshopId]) !!}">{!! trans('eshop.list_all') !!}</a>
                         </h3>
                     </div>
 

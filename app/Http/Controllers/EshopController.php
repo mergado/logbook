@@ -10,7 +10,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Session;
 
-class EshopLogsController extends Controller
+class EshopController extends Controller
 {
 
     /**
@@ -38,7 +38,7 @@ class EshopLogsController extends Controller
 
         return view('eshop.projects.index')->with([
             'projects' => $projects,
-            'logoLink' => action('EshopLogsController@index', ['eshop_id' => $eshopId]),
+            'logoLink' => action('EshopController@index', ['eshop_id' => $eshopId]),
             'eshop' => $eshop,
         ]);
     }

@@ -109,7 +109,7 @@ class ProjectLogsController extends Controller
         ]);
 
         if($request->input('fromEshop')) {
-            return redirect()->action('EshopLogsController@index', [
+            return redirect()->action('EshopController@index', [
                 'eshop_id' => $eshopId
             ]);
         }
@@ -219,7 +219,7 @@ class ProjectLogsController extends Controller
         $log->save();
 
         if($request->input('fromEshop')) {
-            return redirect()->action('EshopLogsController@index', [
+            return redirect()->action('EshopController@index', [
                'eshop_id' => $eshopId
             ]);
         }
@@ -286,7 +286,7 @@ class ProjectLogsController extends Controller
         $log = Log::destroy($id);
 
         if($request->input('eshop')) {
-            return redirect()->action('EshopLogsController@index', [
+            return redirect()->action('EshopController@index', [
                 'eshop_id' => $eshopId
             ]);
         }
