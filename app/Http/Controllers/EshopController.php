@@ -13,17 +13,6 @@ use Illuminate\Support\Facades\Session;
 class EshopLogsController extends Controller
 {
 
-    private $user;
-
-    public function __construct()
-    {
-
-        $session = Session::get('oauth');
-
-        $this->user = User::find(Session::get('oauth')->getResourceOwnerId())->id;
-
-    }
-
     /**
      * Display a listing of the resource.
      *
@@ -48,25 +37,9 @@ class EshopLogsController extends Controller
         }
 
         return view('eshop.projects.index')->with([
-            'user' => $this->user,
             'projects' => $projects,
             'logoLink' => action('EshopLogsController@index', ['eshop_id' => $eshopId]),
             'eshop' => $eshop,
-        ]);
-    }
-
-    public function widget($eshopId) {
-
-        $logs = Log::where('eshop_id', $eshopId)
-            ->join('users', 'logs.user_id', '=', 'users.id')
-            ->orderBy('logs.date', 'desc')
-            ->orderBy('logs.created_at', 'desc')
-            ->select('logs.date','users.name', 'logs.body')
-            ->take(3)->get();
-
-        return view('project.widget')->with([
-            'logs' => $logs,
-            'eshopId' => $eshopId,
         ]);
     }
 

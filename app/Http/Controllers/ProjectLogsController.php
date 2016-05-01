@@ -15,15 +15,6 @@ use Maatwebsite\Excel\Facades\Excel;
 class ProjectLogsController extends Controller
 {
 
-    private $user;
-
-    public function __construct()
-    {
-
-        $this->user = User::find(Session::get('oauth')->getResourceOwnerId())->id;
-
-    }
-
     /**
      * Display a listing of the resource.
      *
@@ -45,7 +36,6 @@ class ProjectLogsController extends Controller
 
         return view('project.logs.index')->with([
             'logs' => $logs,
-            'user' => $this->user,
             'project' => $project,
             'logoLink' => action('ProjectLogsController@index', ['eshop_id' => $eshopId, 'projectId' => $projectId]),
             'eshopId' => $eshopId,
@@ -108,10 +98,12 @@ class ProjectLogsController extends Controller
 
         $date = date_create_from_format($dateFormat, $request->input('date'));
 
+        $user = User::find(Session::get('oauth')->getResourceOwnerId());
+
         $log = Log::create([
             'date' => $date->format('Y-m-d H:i:s'),
             'body' => strip_tags($request->input('body')),
-            'user_id' => $this->user,
+            'user_id' => $user->id,
             'project_id' => $projectId,
             'eshop_id' => $eshopId
         ]);
@@ -253,6 +245,11 @@ class ProjectLogsController extends Controller
         ]);
     }
 
+    /**
+     * Exports (download) logs in CSV
+     * @param $eshopId
+     * @param $projectId
+     */
     public function export($eshopId, $projectId)
     {
         $projectModel = new ProjectModel();
@@ -276,6 +273,15 @@ class ProjectLogsController extends Controller
         })->download('csv');
     }
 
+
+    /**
+     * Delete log (GET method is used to avoid using <form> tag or ajax call)
+     * @param $eshopId
+     * @param $projectId
+     * @param $id
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function deleteLink($eshopId, $projectId, $id, Request $request) {
         $log = Log::destroy($id);
 
@@ -286,22 +292,6 @@ class ProjectLogsController extends Controller
         }
 
         return redirect()->action('ProjectLogsController@index', ['eshop_id' => $eshopId, 'project_id' => $projectId]);
-    }
-
-    public function widget($eshopId, $projectId) {
-
-        $logs = Log::where('project_id', $projectId)
-            ->join('users', 'logs.user_id', '=', 'users.id')
-            ->orderBy('logs.date', 'desc')
-            ->orderBy('logs.created_at', 'desc')
-            ->select('logs.date','users.name', 'logs.body')
-            ->take(3)->get();
-
-        return view('project.widget')->with([
-            'logs' => $logs,
-            'eshopId' => $eshopId,
-            'projectId' => $projectId
-        ]);
     }
 
 }

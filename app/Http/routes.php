@@ -46,8 +46,8 @@ Route::group(['middleware' => ['web', 'oauth']], function () {
 		Route::get('/deleteLink/{id}', 'ProjectLogsController@deleteLink');
 	});
 
-	Route::get('widget/eshop/{eshop_id}/project/{project_id}', 'ProjectLogsController@widget');
-	Route::get('widget/eshop/{eshop_id}', 'EshopLogsController@widget');
+	Route::get('widget/eshop/{eshop_id}/project/{project_id}', 'WidgetController@projectWidget');
+	Route::get('widget/eshop/{eshop_id}', 'WidgetController@eshopWidget');
 
 
 });
