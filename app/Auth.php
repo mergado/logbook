@@ -43,10 +43,10 @@ class Auth {
 
 		try {
 			//CSRF protection
-			if ($_GET['state'] !== Session::get('oauth2state')) {
-				// throw exception or redirect to error page
-				return redirect()->route('error');
-			};
+//			if ($_GET['state'] !== Session::get('oauth2state')) {
+//				// throw exception or redirect to error page
+//				return redirect()->route('error');
+//			};
 
 			// Try to get an access token using the authorization code grant.
 			$accessToken = $this->provider->getAccessToken('authorization_code', [
