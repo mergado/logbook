@@ -3,6 +3,7 @@
 namespace App\Exceptions;
 
 use App\Auth;
+use App\FailLog;
 use Exception;
 use GuzzleHttp\Exception\ClientException;
 use Illuminate\Auth\Access\AuthorizationException;
@@ -40,6 +41,7 @@ class Handler extends ExceptionHandler
      */
     public function report(Exception $e)
     {
+
         return parent::report($e);
     }
 
@@ -52,6 +54,13 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $e)
     {
+
+        if(app()->environment() != 'production') {
+            FailLog::create([
+                'message' => $e->getMessage() . " Exception: " . get_class($e),
+                "request" => $request->path()
+            ]);
+        }
 
         $isWidget = preg_match("/\b^widget\b/", $request->path());
 
