@@ -43,10 +43,11 @@ class Auth {
 
 		try {
 			//CSRF protection
-//			if ($_GET['state'] !== Session::get('oauth2state')) {
-//				// throw exception or redirect to error page
+			if ($_GET['state'] !== Session::get('oauth2state')) {
+				// throw exception or redirect to error page
+				throw new OAuth2StateMissmatchException("oauth2state recieved doesn't match the one save in session. In session:" . Session::get('oauth2state') . ", Recieved oauth2state:" . $_GET['state']);
 //				return redirect()->route('error');
-//			};
+			};
 
 			// Try to get an access token using the authorization code grant.
 			$accessToken = $this->provider->getAccessToken('authorization_code', [

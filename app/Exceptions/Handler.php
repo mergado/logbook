@@ -81,6 +81,8 @@ class Handler extends ExceptionHandler
             return redirect()->route('404');
         } elseif ($e instanceof FatalThrowableError) {
             return redirect()->route('error', ['message' => trans('error.authorization')]);
+        } elseif ($e instanceof OAuth2StateMissmatchException) {
+            return redirect()->route('404');
         }
 
         if(app()->environment() == 'production') {
