@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Exceptions\OAuth2StateMissmatchException;
 use App\MergadoModels\UserModel;
 use App\Models\User;
 use Illuminate\Support\Facades\Session;
