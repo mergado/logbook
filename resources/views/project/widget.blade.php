@@ -39,7 +39,7 @@
         }
 
         body {
-            background-color: rgba(255,255,255,0.5);
+            background-color: #faf6ea;
             margin-top: 0;
             font-family: Arial, Helvetica, Verdana, Sans-serif;
             font-size: 10pt;
@@ -53,7 +53,6 @@
         }
 
         .widget-left, .widget-right {
-            text-align: center;
             color: #333;
             float: left;
             padding-top: 5px;
@@ -62,10 +61,12 @@
 
         .widget-right {
             width: 50%;
+            text-align: right;
         }
 
         .widget-left {
             width: 50%;
+            text-align: left;
         }
 
         .widget-right b, .widget-right p {
