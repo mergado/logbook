@@ -74,12 +74,15 @@
 <div class="widget">
     @if(count($logs) > 0)
         @foreach($logs as $log)
-            <div class="widget-left">
-                {!! date('j. n. Y', strtotime($log->date)) !!}
+            <div title="{!! htmlentities($log->body) !!}">
+                <div class="widget-left">
+                    {!! date('j. n. Y', strtotime($log->date)) !!}
+                </div>
+                <div class="widget-right">
+                    {!! $log->name !!}
+                </div>
             </div>
-            <div class="widget-right" title="{!! htmlentities($log->body) !!}">
-                {!! $log->name !!}
-            </div>
+
         @endforeach
     @else
         <div class="center">
