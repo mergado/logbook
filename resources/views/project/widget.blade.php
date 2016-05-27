@@ -39,7 +39,7 @@
         }
 
         body {
-            background-color: hsla(0, 0%, 100%, .5);
+            background-color: rgba(255,255,255,0.5);
             margin-top: 0;
             font-family: Arial, Helvetica, Verdana, Sans-serif;
             font-size: 10pt;
@@ -53,7 +53,6 @@
         }
 
         .widget-left, .widget-right {
-            height: 30px;
             text-align: center;
             color: #333;
             float: left;
@@ -67,12 +66,6 @@
 
         .widget-left {
             width: 50%;
-        }
-
-        .widget-image {
-            height: 100%;
-            width: auto;
-            float: left;
         }
 
         .widget-right b, .widget-right p {
@@ -120,11 +113,11 @@
 <div class="widget">
     @if(count($logs) > 0)
         @foreach($logs as $log)
-            <div class="widget-left" title="{!! htmlentities($log->body) !!}">
-                {!! $log->name !!}
-            </div>
-            <div class="widget-right">
+            <div class="widget-left">
                 {!! date('j. n. Y', strtotime($log->date)) !!}
+            </div>
+            <div class="widget-right" title="{!! htmlentities($log->body) !!}">
+                {!! $log->name !!}
             </div>
         @endforeach
     @else
