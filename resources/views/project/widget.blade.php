@@ -59,6 +59,11 @@
             font-size: 11pt;
             margin-top: 2px;
         }
+
+        .center {
+            text-align: center;
+            margin-top: 10px;
+        }
     </style>
 
 
@@ -77,7 +82,7 @@
             </div>
         @endforeach
     @else
-        <div class="center" style="text-align: center;">
+        <div class="center">
             <b>{!! trans('log.no') !!}</b>
             <br>
             <b>{!! trans('log.write_first') !!}</b>
