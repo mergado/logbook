@@ -42,6 +42,7 @@
             background-color: hsla(0, 0%, 100%, .5);
             margin-top: 0;
             font-family: Arial, Helvetica, Verdana, Sans-serif;
+            font-size: 10pt;
         }
 
         .widget {
@@ -56,15 +57,16 @@
             text-align: center;
             color: #333;
             float: left;
+            padding-top: 5px;
+            word-break: break-all;
         }
 
         .widget-right {
-            padding-top: 5px;
-            width: 60%;
+            width: 50%;
         }
 
         .widget-left {
-            width: 40%;
+            width: 50%;
         }
 
         .widget-image {
