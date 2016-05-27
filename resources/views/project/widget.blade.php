@@ -18,13 +18,19 @@
         }
 
         body {
-            background-color: hsla(0, 0%, 100%, .5);
+            background-color: rgba(255,255,255,0.5);
             margin-top: 0;
             font-family: Arial, Helvetica, Verdana, Sans-serif;
+            font-size: 10pt;
+
         }
 
         .grid {
             padding: 10px 10px;
+        }
+
+        div.center {
+            text-align: center;
         }
     </style>
 
@@ -44,10 +50,10 @@
                 </div>
             @endforeach
         @else
-            <div class="col-1-1">
+            <div class="col-1-1 center">
                 <b>{!! trans('log.no') !!}</b>
             </div>
-            <div class="col-1-1">
+            <div class="col-1-1 center">
                 <b>{!! trans('log.write_first') !!}</b>
             </div>
         @endif
