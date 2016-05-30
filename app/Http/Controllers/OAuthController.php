@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Auth;
+use App\FailLog;
 use App\Http\Requests;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Session;
@@ -44,8 +45,16 @@ class OAuthController extends Controller
 						break;
 				}
 
+				FailLog::create([
+					"message" => $error . " occured when trying to authorize"
+				]);
+
 				return redirect()->route('error');
 			} else {
+
+				FailLog::create([
+						"message" => $_GET['error'] . " occured and application will try to authorize again."
+				]);
 
 
 				Session::put('oauthError',true);
