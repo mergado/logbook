@@ -31,10 +31,10 @@ class OAuth2Session
     public function handle($request, Closure $next)
     {
 
-        $route = $request->route()->parameter('eshop_id');
+        $eshopId = $request->route()->parameter('eshop_id');
         if(!(Session::has('oauth')) || Session::get('oauth')->hasExpired()) {
             Session::put('next', $request->path());
-            return redirect()->route('auth', $route);
+            return redirect()->route('auth', $eshopId);
         }
 
         if(!Session::has('locale'))

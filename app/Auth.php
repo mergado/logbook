@@ -2,10 +2,9 @@
 
 namespace App;
 
-use App\Exceptions\OAuth2StateMissmatchException;
-use App\Http\Requests\Request;
 use App\MergadoModels\UserModel;
 use App\Models\User;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use MergadoClient\OAuth2\MergadoProvider;
 
@@ -52,7 +51,7 @@ class Auth {
 
 			// Try to get an access token using the authorization code grant.
 			$accessToken = $this->provider->getAccessToken('authorization_code', [
-					'code' => $_GET['code']
+					'code' => $request->input("code")
 			]);
 
 			Session::put('oauth', $accessToken);
