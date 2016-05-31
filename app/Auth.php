@@ -3,6 +3,7 @@
 namespace App;
 
 use App\Exceptions\OAuth2StateMissmatchException;
+use App\Http\Requests\Request;
 use App\MergadoModels\UserModel;
 use App\Models\User;
 use Illuminate\Support\Facades\Session;
@@ -10,12 +11,19 @@ use MergadoClient\OAuth2\MergadoProvider;
 
 class Auth {
 
-	public function __construct() {
-		$this->provider = new MergadoProvider([
+
+	public static function getMergadoProvider () {
+		$provider  = new MergadoProvider([
 				'clientId'                => env('CLIENT_ID'),    // The client ID assigned to you by the provider
 				'clientSecret'            => env('CLIENT_SECRET'),   // The client password assigned to you by the provider
 				'redirectUri'             => env('REDIRECT_URI')
 		], [], env('MODE'));
+
+		return $provider;
+	}
+
+	public function __construct() {
+		$this->provider = $this->getMergadoProvider();
 	}
 
 	public function getAuthCode($eshopId){
@@ -29,26 +37,18 @@ class Auth {
 
 	}
 
+	// SessionManager will be used instead (we don't need to redirect here, we can do redirect to authorization url directly from session manager function
 	public function getAuthUrl(){
 
 		$authorizationUrl = $this->provider->getAuthorizationUrl();
-
-		// Get the state generated for you and store it to the session.
-		Session::put('oauth2state', $this->provider->getState());
 
 		return $authorizationUrl;
 
 	}
 
-	public function getToken(){
+	public function getToken(Request $request){
 
 		try {
-			//CSRF protection
-			if ($_GET['state'] !== Session::get('oauth2state')) {
-				// throw exception or redirect to error page
-				throw new OAuth2StateMissmatchException("oauth2state recieved doesn't match the one save in session. In session:" . Session::get('oauth2state') . ", Recieved oauth2state:" . $_GET['state']);
-//				return redirect()->route('error');
-			};
 
 			// Try to get an access token using the authorization code grant.
 			$accessToken = $this->provider->getAccessToken('authorization_code', [
