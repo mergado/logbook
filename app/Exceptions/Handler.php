@@ -57,7 +57,9 @@ class Handler extends ExceptionHandler
 
         if (app()->environment() != 'production') {
             FailLog::create([
-                'message' => $e->getMessage() . ", Exception: " . get_class($e) . " Stack trace: \n" . $e->getTraceAsString(),
+                'message' => $e->getMessage() . ", Exception: " . get_class($e) .
+                    "\nIn file: " . $e->getFile() . " on line: " . $e->getLine() .
+                    " Stack trace: \n" . $e->getTraceAsString(),
                 "request" => $request->path()
             ]);
         }
