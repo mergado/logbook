@@ -8,82 +8,88 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use MergadoClient\OAuth2\MergadoProvider;
 
-class Auth {
+class Auth
+{
 
 
-	public static function getMergadoProvider () {
-		$provider  = new MergadoProvider([
-				'clientId'                => env('CLIENT_ID'),    // The client ID assigned to you by the provider
-				'clientSecret'            => env('CLIENT_SECRET'),   // The client password assigned to you by the provider
-				'redirectUri'             => env('REDIRECT_URI')
-		], [], env('MODE'));
+    public static function getMergadoProvider()
+    {
+        $provider = new MergadoProvider([
+            'clientId' => env('CLIENT_ID'),    // The client ID assigned to you by the provider
+            'clientSecret' => env('CLIENT_SECRET'),   // The client password assigned to you by the provider
+            'redirectUri' => env('REDIRECT_URI')
+        ], [], env('MODE'));
 
-		return $provider;
-	}
+        return $provider;
+    }
 
-	public function __construct() {
-		$this->provider = $this->getMergadoProvider();
-	}
+    public function __construct()
+    {
+        $this->provider = $this->getMergadoProvider();
+    }
 
-	public function getAuthCode($eshopId){
+    public function getAuthCode($eshopId)
+    {
 
-		$authorizationUrl = $this->provider->getAuthorizationUrl(['entity_id' => $eshopId]);
+        $authorizationUrl = $this->provider->getAuthorizationUrl(['entity_id' => $eshopId]);
 
-		// Get the state generated for you and store it to the session.
-		Session::put('oauth2state', $this->provider->getState());
+        // Get the state generated for you and store it to the session.
+        Session::put('oauth2state', $this->provider->getState());
 
-		return redirect($authorizationUrl);
+        return redirect($authorizationUrl);
 
-	}
+    }
 
-	// SessionManager will be used instead (we don't need to redirect here, we can do redirect to authorization url directly from session manager function
-	public function getAuthUrl(){
+    // SessionManager will be used instead (we don't need to redirect here, we can do redirect to authorization url directly from session manager function
+    public function getAuthUrl()
+    {
 
-		$authorizationUrl = $this->provider->getAuthorizationUrl();
+        $authorizationUrl = $this->provider->getAuthorizationUrl();
 
-		return $authorizationUrl;
+        return $authorizationUrl;
 
-	}
+    }
 
-	public function getToken(Request $request){
+    public function getToken(Request $request)
+    {
 
-		try {
+        try {
 
-			// Try to get an access token using the authorization code grant.
-			$accessToken = $this->provider->getAccessToken('authorization_code', [
-					'code' => $request->input("code")
-			]);
+            // Try to get an access token using the authorization code grant.
+            $accessToken = $this->provider->getAccessToken('authorization_code', [
+                'code' => $request->input("code")
+            ]);
 
-			Session::put('oauth', $accessToken);
+            Session::put('oauth', $accessToken);
 
-			$megadoUser = new UserModel();
-			$megadoUser = $megadoUser->get($accessToken->getResourceOwnerId());
+            $megadoUser = new UserModel();
+            $megadoUser = $megadoUser->get($accessToken->getResourceOwnerId());
 
-			$user = [
-				'email' => $megadoUser->email,
-				'first_name' => $megadoUser->first_name,
-				'last_name' => $megadoUser->last_name,
-				'name' => $megadoUser->name,
-				'locale' => $megadoUser->locale
-			];
-			$user = User::updateOrCreate(['id' => $megadoUser->id], $user);
+            $user = [
+                'email' => $megadoUser->email,
+                'first_name' => $megadoUser->first_name,
+                'last_name' => $megadoUser->last_name,
+                'name' => $megadoUser->name,
+                'locale' => $megadoUser->locale
+            ];
+            $user = User::updateOrCreate(['id' => $megadoUser->id], $user);
 
-			Session::forget('oauth2state');
+            Session::forget('oauth2state');
 
-			if(Session::has('next')) {
-				$next = Session::get('next');
-				Session::forget('next');
-				return redirect($next);
-			}
+            if (Session::has('next')) {
+                $next = Session::get('next');
+                Session::forget('next');
+                return redirect($next);
+            }
 
-			return redirect(Session::get('_previous')['url']);
+            return redirect(Session::get('_previous')['url']);
 
-		} catch (\League\OAuth2\Client\Provider\Exception\IdentityProviderException $e) {
+        } catch (\League\OAuth2\Client\Provider\Exception\IdentityProviderException $e) {
 
-			// Your exception handling
-			var_dump($e);
+            // Your exception handling
+            var_dump($e);
 
-		}
-	}
+        }
+    }
 
 }

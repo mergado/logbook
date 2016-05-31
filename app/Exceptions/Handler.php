@@ -36,7 +36,7 @@ class Handler extends ExceptionHandler
      *
      * This is a great spot to send exceptions to Sentry, Bugsnag, etc.
      *
-     * @param  \Exception  $e
+     * @param  \Exception $e
      * @return void
      */
     public function report(Exception $e)
@@ -48,14 +48,14 @@ class Handler extends ExceptionHandler
     /**
      * Render an exception into an HTTP response.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Exception  $e
+     * @param  \Illuminate\Http\Request $request
+     * @param  \Exception $e
      * @return \Illuminate\Http\Response
      */
     public function render($request, Exception $e)
     {
 
-        if(app()->environment() != 'production') {
+        if (app()->environment() != 'production') {
             FailLog::create([
                 'message' => $e->getMessage() . ", Exception: " . get_class($e) . " Stack trace: \n" . $e->getTraceAsString(),
                 "request" => $request->path()
@@ -64,7 +64,7 @@ class Handler extends ExceptionHandler
 
         $isWidget = preg_match("/\b^widget\b/", $request->path());
 
-        if($isWidget) {
+        if ($isWidget) {
             return redirect()->route('errors.widget');
         }
 
@@ -83,7 +83,7 @@ class Handler extends ExceptionHandler
             return redirect()->route('error', ['message' => trans('error.authorization')]);
         }
 
-        if(app()->environment() == 'production') {
+        if (app()->environment() == 'production') {
             return redirect()->route('error');
 
         }
