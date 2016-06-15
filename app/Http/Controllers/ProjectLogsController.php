@@ -24,8 +24,8 @@ class ProjectLogsController extends Controller
     public function index($eshopId, $projectId)
     {
 
-        $projectModel = new ProjectModel();
-        $project = $projectModel->get($projectId);
+        $projectModel = new ProjectModel($projectId);
+        $project = $projectModel->get();
 
         $logs = Log::where('project_id', $projectId)
             ->join('users', 'logs.user_id', '=', 'users.id')
@@ -51,8 +51,8 @@ class ProjectLogsController extends Controller
     public function create($eshopId, $projectId)
     {
 
-        $projectModel = new ProjectModel();
-        $project = $projectModel->get($projectId);
+        $projectModel = new ProjectModel($projectId);
+        $project = $projectModel->get();
 
         return view('project.logs.create')->with([
             'project' => $project,
@@ -128,8 +128,8 @@ class ProjectLogsController extends Controller
     public function show($eshopId, $projectId, $id)
     {
 
-        $projectModel = new ProjectModel();
-        $project = $projectModel->get($projectId);
+        $projectModel = new ProjectModel($projectId);
+        $project = $projectModel->get();
 
         $log = Log::find($id);
         //if null redirect to error page/logs page
@@ -154,8 +154,8 @@ class ProjectLogsController extends Controller
     public function edit($eshopId, $projectId, $id)
     {
 
-        $projectModel = new ProjectModel();
-        $project = $projectModel->get($projectId);
+        $projectModel = new ProjectModel($projectId);
+        $project = $projectModel->get();
         $log = Log::find($id);
         //if null redirect to error page/logs page
         if(!$log) {
@@ -252,8 +252,8 @@ class ProjectLogsController extends Controller
      */
     public function export($eshopId, $projectId)
     {
-        $projectModel = new ProjectModel();
-        $project = $projectModel->get($projectId);
+        $projectModel = new ProjectModel($projectId);
+        $project = $projectModel->get();
 
         $logs = Log::where('project_id', $projectId)
             ->join('users', 'logs.user_id', '=', 'users.id')
