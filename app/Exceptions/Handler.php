@@ -3,7 +3,6 @@
 namespace App\Exceptions;
 
 use App\Auth;
-use App\FailLog;
 use Exception;
 use GuzzleHttp\Exception\ClientException;
 use Illuminate\Auth\Access\AuthorizationException;
@@ -55,15 +54,6 @@ class Handler extends ExceptionHandler
     public function render($request, Exception $e)
     {
 
-        if (app()->environment() != 'production') {
-            FailLog::create([
-                'message' => $e->getMessage() . ", Exception: " . get_class($e) .
-                    "\nIn file: " . $e->getFile() . " on line: " . $e->getLine() .
-                    " Stack trace: \n" . $e->getTraceAsString(),
-                "request" => $request->path()
-            ]);
-        }
-
         $isWidget = preg_match("/\b^widget\b/", $request->path());
 
         if ($isWidget) {
@@ -83,6 +73,8 @@ class Handler extends ExceptionHandler
             return redirect()->route('404');
         } elseif ($e instanceof FatalThrowableError) {
             return redirect()->route('error', ['message' => trans('error.authorization')]);
+        } elseif ($e instanceof AuthorizationException) {
+            return redirect()->route('error', ['message' => $e->getMessage()]);
         }
 
         if (app()->environment() == 'production') {
