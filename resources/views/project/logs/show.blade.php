@@ -39,7 +39,7 @@
         {{--</div>--}}
     {{--</div>--}}
 
-    {{--@if($user->id == session('oauth')->getResourceOwnerId())--}}
+    {{--@if($user->id == session('oauth')->getUserId())--}}
     {{--<div class="fixed-action-btn horizontal" style="bottom: 45px; right: 24px;">--}}
         {{--<a class="btn-floating btn-large green"--}}
            {{--href="{!! action('ProjectLogsController@edit', ['eshop_id' => $eshopId, 'projectId' => $project->id, 'id' => $log->id]) !!}">--}}
