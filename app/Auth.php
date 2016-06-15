@@ -2,7 +2,9 @@
 
 namespace App;
 
+use App\Exceptions\SessionException;
 use App\MergadoModels\UserModel;
+use App\Models\OfflineToken;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
@@ -10,7 +12,7 @@ use MergadoClient\OAuth2\MergadoProvider;
 
 class Auth
 {
-
+    public $provider;
 
     public static function getMergadoProvider()
     {
@@ -30,40 +32,31 @@ class Auth
 
     public function getAuthCode($eshopId)
     {
-
-        $authorizationUrl = $this->provider->getAuthorizationUrl(['entity_id' => $eshopId]);
-
-        // Get the state generated for you and store it to the session.
-        Session::put('oauth2state', $this->provider->getState());
-
-        return redirect($authorizationUrl);
-
+        return redirect($this->getAuthUrl($eshopId));
     }
 
     // SessionManager will be used instead (we don't need to redirect here, we can do redirect to authorization url directly from session manager function
-    public function getAuthUrl()
+    public function getAuthUrl($eshopId)
     {
-
-        $authorizationUrl = $this->provider->getAuthorizationUrl();
-
+        $authorizationUrl = $this->provider->getAuthorizationUrl(['entity_id' => $eshopId]);
         return $authorizationUrl;
-
     }
 
     public function getToken(Request $request)
     {
+        // Try to get an access token using the authorization code grant.
+        $accessToken = $this->provider->getAccessToken('authorization_code', [
+            'code' => $request->input("code")
+        ]);
 
-        try {
+        Session::put('oauth', $accessToken);
 
-            // Try to get an access token using the authorization code grant.
-            $accessToken = $this->provider->getAccessToken('authorization_code', [
-                'code' => $request->input("code")
-            ]);
+        $userId = $accessToken->getUserId();
+        $user = User::find($userId);
 
-            Session::put('oauth', $accessToken);
-
+        if (!$user) {
             $megadoUser = new UserModel();
-            $megadoUser = $megadoUser->get($accessToken->getResourceOwnerId());
+            $megadoUser = $megadoUser->get($userId);
 
             $user = [
                 'email' => $megadoUser->email,
@@ -73,23 +66,41 @@ class Auth
                 'locale' => $megadoUser->locale
             ];
             $user = User::updateOrCreate(['id' => $megadoUser->id], $user);
-
-            Session::forget('oauth2state');
-
-            if (Session::has('next')) {
-                $next = Session::get('next');
-                Session::forget('next');
-                return redirect($next);
-            }
-
-            return redirect(Session::get('_previous')['url']);
-
-        } catch (\League\OAuth2\Client\Provider\Exception\IdentityProviderException $e) {
-
-            // Your exception handling
-            var_dump($e);
-
         }
+
+        if (Session::has('next')) {
+            $next = Session::get('next');
+            Session::forget('next');
+            return redirect($next);
+        }
+
+        $previous = Session::get('_previous')['url'];
+        if (!$previous) {
+            throw new SessionException("Session has no previous on oauth redirect uri route.");
+        }
+
+        return redirect($previous);
+    }
+
+    public function getOfflineToken($entityId, $forceNew = true)
+    {
+
+        if (!$forceNew) {
+            $offlineToken = OfflineToken::getValidAccessToken($entityId);
+
+            if($offlineToken) return $offlineToken;
+        }
+        $offlineToken = $this->provider->getAccessToken('refresh_token', [
+            'entity_id' => $entityId
+        ]);
+
+        OfflineToken::updateOrCreate(["eshop_id" => $entityId], [
+            "token" => $offlineToken->getToken(),
+            "eshop_id" => $entityId,
+            "expire_time" => $offlineToken->getExpires()
+        ]);
+
+        return $offlineToken;
     }
 
 }

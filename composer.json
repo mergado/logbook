@@ -8,7 +8,7 @@
         "php": ">=5.5.9",
         "laravel/framework": "5.2.*",
         "symfony/psr-http-message-bridge": "0.1",
-        "mergado/mergado-api-client": "dev-master",
+        "mergado/mergado-api-client": "1.1.*",
         "laravelcollective/html": "v5.2.4",
         "maatwebsite/excel": "2.1.x-dev",
         "graham-campbell/htmlmin": "v4.2.1",
