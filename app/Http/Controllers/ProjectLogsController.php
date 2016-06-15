@@ -98,7 +98,7 @@ class ProjectLogsController extends Controller
 
         $date = date_create_from_format($dateFormat, $request->input('date'));
 
-        $user = User::find(Session::get('oauth')->getResourceOwnerId());
+        $user = User::find(Session::get('oauth')->getUserId());
 
         $log = Log::create([
             'date' => $date->format('Y-m-d H:i:s'),

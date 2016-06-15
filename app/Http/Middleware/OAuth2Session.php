@@ -24,22 +24,20 @@ class OAuth2Session
     /**
      * Handle an incoming request.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Closure  $next
+     * @param  \Illuminate\Http\Request $request
+     * @param  \Closure $next
      * @return mixed
      */
     public function handle($request, Closure $next)
     {
-
         $eshopId = $request->route()->parameter('eshop_id');
-        if(!(Session::has('oauth')) || Session::get('oauth')->hasExpired()) {
+        if (!(Session::has('oauth')) || Session::get('oauth')->hasExpired()) {
             Session::put('next', $request->path());
             return redirect()->route('auth', $eshopId);
         }
 
-        if(!Session::has('locale'))
-        {
-            Session::put('locale', User::find(Session::get('oauth')->getResourceOwnerId())->locale);
+        if (!Session::has('locale')) {
+            Session::put('locale', User::find(Session::get('oauth')->getUserId())->locale);
         }
 
         App::setLocale(Session::get('locale'));

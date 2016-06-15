@@ -19,6 +19,8 @@ Route::group(['middleware' => ['web']], function () {
 	Route::get('eshop/{eshop_id}/auth', ['uses' => 'OAuthController@auth', 'as' => 'auth']);
 });
 
+Route::post("/_mergado/hook/", "HookController@index");
+
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -29,6 +31,7 @@ Route::group(['middleware' => ['web']], function () {
 | kernel and includes session state, CSRF protection, and more.
 |
 */
+
 Route::group(['middleware' => ['web', 'oauth']], function () {
 
 
@@ -48,8 +51,6 @@ Route::group(['middleware' => ['web', 'oauth']], function () {
 
 	Route::get('widget/eshop/{eshop_id}/project/{project_id}', 'WidgetController@projectWidget');
 	Route::get('widget/eshop/{eshop_id}', 'WidgetController@eshopWidget');
-
-
 });
 
 

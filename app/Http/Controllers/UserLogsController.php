@@ -16,7 +16,7 @@ class UserLogsController extends Controller
 
     public function __construct()
     {
-        $this->user = User::find(Session::get('oauth')->getResourceOwnerId());
+        $this->user = User::find(Session::get('oauth')->getUserId());
     }
 
     /**

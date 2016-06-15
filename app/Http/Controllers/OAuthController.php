@@ -3,10 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Auth;
-use App\FailLog;
+use App\Exceptions\AuthorizationException;
 use App\Http\Requests;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Session;
 
 class OAuthController extends Controller
@@ -28,7 +29,6 @@ class OAuthController extends Controller
     public function token(Request $request)
     {
 
-
         if ($request->has('code')) {
             //request token
             return $this->oauth->getToken($request);
@@ -41,26 +41,16 @@ class OAuthController extends Controller
 
                 switch ($error) {
                     case 'invalid_entity':
-                        return redirect()->route('error', ['message' => trans('error.invalid-entity')]);
-                        break;
+                        throw new AuthorizationException(trans('error.invalid-entity'));
                     case 'user_permission_error':
-                        return redirect()->route('error', ['message' => trans('error.user_permission_error')]);
-                        break;
+                        throw new AuthorizationException(trans('error.user_permission_error'));
                     case (preg_match('/invalid_request.*/', $error) ? true : false) :
-                        return redirect()->route('error', ['message' => trans('error.oauth_invalid_request')]);
-                        break;
+                        throw new AuthorizationException(trans('error.oauth_invalid_request'));
                 }
-
-                FailLog::create([
-                    "message" => $error . " occured when trying to authorize"
-                ]);
 
                 return redirect()->route('error');
             } else {
-
-                FailLog::create([
-                    "message" => $error . " occured and application will try to authorize again."
-                ]);
+                Log::notice($error . " occured and application is going to try to authorize again.");
 
                 Session::put('oauthError', true);
                 return $this->oauth->getAuthCode(Session::get('entity_id'));
