@@ -32,25 +32,37 @@ Route::post("/_mergado/hook/", "HookController@index");
 |
 */
 
-Route::group(['middleware' => ['web', 'oauth']], function () {
+Route::group(['middleware' => ['web']], function () {
 
-
-	Route::get('eshop/{eshop_id}', 'EshopController@index');
-
-	Route::get('/logout', function(){
-		//invisible to normal user in mergado
-		Session::flush();
+	Route::group([
+			"prefix" => "eshop/{eshop_id}",
+			"middleware" => "oauth"
+	], function() {
+		Route::get('/', 'EshopController@index');
 	});
 
-	Route::group(['prefix' => 'eshop/{eshop_id}/project/{project_id}'], function () {
+	Route::group([
+			'prefix' => 'eshop/{eshop_id}/project/{project_id}',
+			"middleware" => "oauth"
+	], function () {
 		Route::get('/', 'ProjectLogsController@index');
 		Route::resource('/logs', 'ProjectLogsController');
 		Route::get('/export', 'ProjectLogsController@export');
 		Route::get('/deleteLink/{id}', 'ProjectLogsController@deleteLink');
 	});
 
-	Route::get('widget/eshop/{eshop_id}/project/{project_id}', 'WidgetController@projectWidget');
-	Route::get('widget/eshop/{eshop_id}', 'WidgetController@eshopWidget');
+	Route::group([
+			"prefix" => "widget/eshop/{eshop_id}",
+			"middleware" => "oauth"
+	], function() {
+		Route::get('/project/{project_id}', 'WidgetController@projectWidget');
+		Route::get('/', 'WidgetController@eshopWidget');
+	});
+
+	Route::get('/logout', function(){
+		//invisible to normal user in mergado
+		Session::flush();
+	});
 });
 
 
