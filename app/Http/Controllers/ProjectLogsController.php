@@ -15,6 +15,15 @@ use Maatwebsite\Excel\Facades\Excel;
 class ProjectLogsController extends Controller
 {
 
+
+    public function __construct()
+    {
+        $this->middleware("caffeine", ["only" => [
+            "create",
+            "edit"
+        ]]);
+    }
+
     /**
      * Display a listing of the resource.
      *
