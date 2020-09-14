@@ -3,6 +3,8 @@
 
 Route::post("/_mergado/hook/", "HookController@index");
 
+Route::post("hook", "HookController@index");
+
 Route::group(['middleware' => ['web']], function () {
 
 	Route::get('oauth2', ['uses' => 'OAuthController@token', 'as' => 'token']);

@@ -36,8 +36,13 @@ class OAuth2Session
             return redirect()->route('auth', $eshopId);
         }
 
-        if (!Session::has('locale')) {
-            Session::put('locale', User::find(Session::get('oauth')->getUserId())->locale);
+        $userId = Session::get('oauth')->getUserId();
+        $user = User::find($userId);
+        if($user) {
+            // change from cs-CZ to cs_CZ
+            $userLocale = str_replace('-', '_', User::find($userId)->locale);
+            Session::put('locale', $userLocale);
+
         }
 
         App::setLocale(Session::get('locale'));

@@ -15,7 +15,6 @@ class UserModel extends MergadoApiModel {
 
 	public function get($id = null) {
 		return $this->api->users($id)->get();
-//		return $this->api->users(Session::get('oauth')->getResourceOwnerId());
 	}
 
 }

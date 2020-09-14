@@ -19,8 +19,9 @@ class Auth
         $provider = new MergadoProvider([
             'clientId' => env('CLIENT_ID'),    // The client ID assigned to you by the provider
             'clientSecret' => env('CLIENT_SECRET'),   // The client password assigned to you by the provider
-            'redirectUri' => env('REDIRECT_URI')
-        ], [], env('MODE'));
+            'redirectUri' => env('REDIRECT_URI'),
+            'oAuthEndpoint' => env('MERGADO_OAUTH_ENDPOINT'),
+        ], []);
 
         return $provider;
     }
@@ -45,28 +46,25 @@ class Auth
     public function getToken(Request $request)
     {
         // Try to get an access token using the authorization code grant.
-        $accessToken = $this->provider->getAccessToken('authorization_code', [
-            'code' => $request->input("code")
-        ]);
+		$accessToken = $this->provider->getAccessToken('authorization_code', [
+			'code' => $request->input("code")
+		]);
 
         Session::put('oauth', $accessToken);
-
         $userId = $accessToken->getUserId();
-        $user = User::find($userId);
 
-        if (!$user) {
-            $megadoUser = new UserModel();
-            $megadoUser = $megadoUser->get($userId);
-
-            $user = [
-                'email' => $megadoUser->email,
-                'first_name' => $megadoUser->first_name,
-                'last_name' => $megadoUser->last_name,
-                'name' => $megadoUser->name,
-                'locale' => $megadoUser->locale
-            ];
-            $user = User::updateOrCreate(['id' => $megadoUser->id], $user);
-        }
+        // Load User data from mergado
+        $megadoUser = new UserModel();
+        $megadoUser = $megadoUser->get($userId);
+        $user = [
+            'email' => $megadoUser->email,
+            'first_name' => $megadoUser->first_name,
+            'last_name' => $megadoUser->last_name,
+            'name' => $megadoUser->name,
+            'locale' => $megadoUser->locale,
+            'updated_at' => new \DateTime(),
+        ];
+        User::updateOrCreate(['id' => $megadoUser->id], $user);
 
         if (Session::has('next')) {
             $next = Session::get('next');

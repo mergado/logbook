@@ -52,7 +52,7 @@
             $('#datetimepicker1').datetimepicker({
                 locale: "cs",
                 @if(Request::old('date'))
-                defaultDate: "{!! date_create_from_format(trans('time.format'), Request::old('date'))->format('Y-m-d H:i:s') !!}",
+                defaultDate: "{!! date_create_from_format(trans('general.time_format'), Request::old('date'))->format('Y-m-d H:i:s') !!}",
                 @else
                 defaultDate: '{!! $log->date !!}',
                 @endif

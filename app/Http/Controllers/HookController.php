@@ -2,11 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Hooks\CreateHook;
-use App\Hooks\DeleteHook;
 use Illuminate\Http\Request;
-
-use App\Http\Requests;
 
 class HookController extends Controller
 {
@@ -19,16 +15,15 @@ class HookController extends Controller
         }
 
         switch ($data["action"]) {
+            case "ping":
+                return response()->json(["message" => "pong"], 200);
             case "app.enable":
-                $hook = new CreateHook($data["entity_id"]);
-                break;
+                return response()->json(["message" => "enabled"], 200);
             case "app.disable":
-                $hook = new DeleteHook($data["entity_id"]);
-                break;
+                return response()->json(["message" => "disabled"], 200);
             default:
                 return response()->json(["message" => "Unsupported action!"], 400);
         }
 
-        return $hook->run();
     }
 }

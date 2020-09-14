@@ -5,4 +5,3 @@ Homestead.json
 .env
 *.env
 .idea/
-composer.lock

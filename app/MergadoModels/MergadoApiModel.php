@@ -2,16 +2,10 @@
 
 namespace App\MergadoModels;
 
-use ArrayAccess;
-use Illuminate\Contracts\Support\Arrayable;
-use Illuminate\Contracts\Support\Jsonable;
 use Illuminate\Support\Facades\Session;
-use Illuminate\Support\Str;
-use JsonSerializable;
 use MergadoClient\ApiClient;
 
 abstract class MergadoApiModel
-//    implements ArrayAccess, Arrayable, Jsonable, JsonSerializable
 {
 
 	protected $api;
@@ -26,9 +20,9 @@ abstract class MergadoApiModel
 		}
 
 		if($token){
-			$this->api = new ApiClient($token, env('MODE'));
+			$this->api = new ApiClient($token, env('MERGADO_API_ENDPOINT'));
 		} elseif (Session::get("oauth")) {
-			$this->api = new ApiClient(Session::get('oauth')->getToken(), env('MODE'));
+			$this->api = new ApiClient(Session::get('oauth')->getToken(), env('MERGADO_API_ENDPOINT'));
 		} else {
 			$this->api = null;
 		}
@@ -39,12 +33,12 @@ abstract class MergadoApiModel
 		if($this->api) {
 			$this->api->setToken($token);
 		} else {
-			$this->api = new ApiClient($token, env('MODE'));
+			$this->api = new ApiClient($token, env('MERGADO_API_ENDPOINT'));
 		}
 	}
 
 	public static function apiClient() {
-		return new ApiClient(Session::get('oauth')->getToken(), env('MODE'));
+		return new ApiClient(Session::get('oauth')->getToken(), env('MERGADO_API_ENDPOINT'));
 	}
 
 	protected function getPublicProperties()
@@ -158,8 +152,6 @@ abstract class MergadoApiModel
 		$object = (object) array_filter((array) $this, function ($val) {
 			return !is_null($val);
 		});
-
-		return $object;
 	}
 
 }

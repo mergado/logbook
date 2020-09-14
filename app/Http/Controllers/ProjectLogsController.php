@@ -6,11 +6,9 @@ use App\MergadoModels\ProjectModel;
 use App\Models\Log;
 use App\Models\User;
 use Illuminate\Http\Request;
-use App\Http\Requests;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
-use Maatwebsite\Excel\Facades\Excel;
 
 class ProjectLogsController extends Controller
 {
@@ -89,7 +87,7 @@ class ProjectLogsController extends Controller
             'date' => trans('log.date')
         );
 
-        $dateFormat = trans('time.format');
+        $dateFormat = trans('general.time_format');
 
         $validator = Validator::make($request->input(), [
             'date' => 'required|date_format:"'.$dateFormat.'"',
@@ -203,7 +201,7 @@ class ProjectLogsController extends Controller
         );
 
 
-        $dateFormat = trans('time.format');
+        $dateFormat = trans('general.time_format');
 
         $validator = Validator::make($request->input(), [
             'date' => 'required|date_format:"'.$dateFormat.'"',

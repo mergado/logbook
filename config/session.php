@@ -135,7 +135,7 @@ return [
     |
     */
 
-    'domain' => "appcloud.mergado.com",
+    'domain' => env("SESSION_COOKIE_DOMAIN", null),
 
     /*
     |--------------------------------------------------------------------------

@@ -17,11 +17,7 @@
 
     <script type="text/javascript" src="{!! asset('js/date_picker/moment-min.js') !!}"></script>
     <script type="text/javascript" src="{!! asset('js/datetime-picker.js') !!}"></script>
-    @if (App::environment('production'))
-        <script src="https://app.mergado.com/static/js/apps/MessageApi.min.js"></script>
-    @else
-        <script src="https://dev.mergado.com/static/js/apps/MessageApi.min.js"></script>
-    @endif
+    <script src="https://app.mergado.com/static/js/apps/MessageApi.min.js"></script>
 
     <script type="text/javascript" src="{!! asset('js/autosize.js') !!}"></script>
 
