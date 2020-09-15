@@ -1,13 +1,13 @@
 <?php
 
 return [
-	'default' => 'Omlouváme se, ale při načítání stránky nastala chyba.',
-	'not-found' => 'Omlouváme se, ale vyskytla se chyba. Stránku se nepovedlo najít.',
-	'invalid-entity' => 'Omlouváme se, ale při načítání stránky nastala chyba. Nepodařilo se autentizovat eshop.',
-	'oauth_invalid_request' => 'Omlouváme se, ale při autorizaci nastala chyba.',
-	'user_permission_error' => 'Omlouváme se, ale zdá se že nemáte přístup k danému eshopu',
-	'required' => 'Pole :attribute je povinné.',
-	'max_length' => 'Maximální  délka pole :attribute je :max znaků.',
-	'date_format' => 'Pole :attribute je v nesprávném formátu',
-	'authorization' => 'Nastala chyba při autorizaci.',
+	'default' => 'Sajnáljuk, de hiba történt az oldal betöltése közben.',
+	'not-found' => 'Sajnáljuk, de hiba történt. A keresett oldalt nem található.',
+	'invalid-entity' => 'Sajnáljuk, de hiba történt az oldal betöltése közben. Nem sikerült a webáruház hitelesítése.',
+	'oauth_invalid_request' => 'Sajnáljuk, de a hitelesítés közben hiba történt.',
+	'user_permission_error' => 'Sajnáljuk, de úgy tűnik, hogy nincs hozzáférése ehhez a webáruházhoz.',
+	'required' => 'A(z) :attribute mező kötelező.',
+	'max_length' => 'A(z) :attribute mező maximális hossza :max jel.',
+	'date_format' => 'A(z) :attribute mező nincs helyes formátumban',
+	'authorization' => 'Hitelesítési hiba történt',
 ];

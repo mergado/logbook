@@ -1,7 +1,7 @@
 <?php
 
 return [
-	'list' => 'Seznam exportů',
-	'no_projects' => 'Tento eshop nemá žádné exporty.',
-	'list_all' => 'Seznam všech exportů',
+	'list' => 'Exportok listája',
+	'no_projects' => 'A webáruháznak nincs exportja',
+	'list_all' => 'Az összes export listája',
 ];

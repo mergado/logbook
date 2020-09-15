@@ -1,6 +1,6 @@
 <?php
 
-return array (
+return [
 	'body' => 'Zápis',
 	'date' => 'Dátum',
 	'title' => 'Nadpis',
@@ -8,17 +8,17 @@ return array (
 	'myLogs' => 'Moje zápisy',
 	'submit' => 'Uložiť',
 	'project' => 'Export',
-	'eshop' => 'Eshop',
+	'eshop' => 'E-shop',
 	'export' => 'Exportovať',
 	'delete' => 'Zmazať',
 	'action' => 'Akcia',
 	'edit' => 'Upraviť',
 	'next' => 'Nasledujúci',
 	'previous' => 'Predchádzajúci',
-	'confirm_delete' => 'Opravdu chcete smazat log?',
+	'confirm_delete' => 'Naozaj chcete zmazať log?',
 	'new' => 'Nový log',
 	'no_logs' => 'Zatiaľ k tomuto exportu nemáte žiadne logy.',
 	'back' => 'Späť',
 	'no' => 'Zatiaľ tu nemáte žiadne logy.',
-	'write_first' => 'Zapíšte prvý!'
-);
+	'write_first' => 'Zapíšte prvý!',
+];

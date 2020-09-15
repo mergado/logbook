@@ -2,6 +2,6 @@
 
 return [
 	'list' => 'Seznam exportů',
-	'no_projects' => 'Tento eshop nemá žádné exporty.',
+	'no_projects' => 'Tento e-shop nemá žádné exporty.',
 	'list_all' => 'Seznam všech exportů',
 ];
