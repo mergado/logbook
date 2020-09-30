@@ -6,7 +6,8 @@
     "gulp-purifycss": "^0.2.0"
   },
   "dependencies": {
+    "bootstrap-sass": "^3.0.0",
     "laravel-elixir": "^4.0.0",
-    "bootstrap-sass": "^3.0.0"
+    "node-sass": "^4.14.1"
   }
 }

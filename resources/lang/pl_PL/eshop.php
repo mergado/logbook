@@ -1,7 +1,7 @@
 <?php
 
 return [
-	'list' => 'List of exports',
-	'no_projects' => 'There are no exports in this store.',
-	'list_all' => 'List of all exports',
+	'list' => 'Lista eksportów',
+	'no_projects' => 'Nie ma eksportów dla tego e-sklepu.',
+	'list_all' => 'Lista eksportów',
 ];

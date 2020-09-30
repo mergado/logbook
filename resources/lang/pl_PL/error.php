@@ -1,13 +1,13 @@
 <?php
 
-return [
-	'default' => 'Omlouváme se, ale při načítání stránky nastala chyba.',
-	'not-found' => 'Omlouváme se, ale vyskytla se chyba. Stránku se nepovedlo najít.',
-	'invalid-entity' => 'Omlouváme se, ale při načítání stránky nastala chyba. Nepodařilo se autentizovat eshop.',
-	'oauth_invalid_request' => 'Omlouváme se, ale při autorizaci nastala chyba.',
-	'user_permission_error' => 'Omlouváme se, ale zdá se že nemáte přístup k danému eshopu',
-	'required' => 'Pole :attribute je povinné.',
-	'max_length' => 'Maximální  délka pole :attribute je :max znaků.',
-	'date_format' => 'Pole :attribute je v nesprávném formátu',
-	'authorization' => 'Nastala chyba při autorizaci.',
-];
+return array (
+	'default' => 'Przepraszamy, ale wystąpił błąd podczas ładowania strony.',
+	'not-found' => 'Przepraszamy, ale wystąpił błąd. Nie można znaleźć strony.',
+	'invalid-entity' => 'Przepraszamy, ale wystąpił błąd podczas ładowania strony. Nie udało się uwierzytelnić sklepu internetowego.',
+	'oauth_invalid_request' => 'Przepraszamy, ale podczas autoryzacji wystąpił błąd.',
+	'user_permission_error' => 'Przepraszamy, ale wygląda na to, że nie masz dostępu do danego sklepu internetowego',
+	'required' => 'Pole :attribute jest wymagane.',
+	'max_length' => 'Maksymalna długość pola atrybutu to: maksymalna liczba znaków.',
+	'date_format' => 'Pole: atrybut ma nieprawidłowy format',
+	'authorization' => 'Wystąpił błąd przy autoryzacji.',
+);
