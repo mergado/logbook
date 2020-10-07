@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use App\MergadoModels\UserModel;
 use App\Models\User;
 use Closure;
 use Illuminate\Support\Facades\App;
@@ -36,14 +37,15 @@ class OAuth2Session
             return redirect()->route('auth', $eshopId);
         }
 
-        $userId = Session::get('oauth')->getUserId();
-        $user = User::find($userId);
-        if($user) {
-            // change from cs-CZ to cs_CZ
-            $userLocale = str_replace('-', '_', User::find($userId)->locale);
-            Session::put('locale', $userLocale);
+	    $userId = Session::get('oauth')->getUserId();
 
-        }
+	    $mergadoUser = new UserModel();
+	    $mergadoUser = $mergadoUser->get($userId);
+	    if ($mergadoUser->locale) {
+		    // change from cs-CZ to cs_CZ
+		    $userLocale = str_replace('-', '_', $mergadoUser->locale);
+		    Session::put('locale', $userLocale);
+	    }
 
         App::setLocale(Session::get('locale'));
 
